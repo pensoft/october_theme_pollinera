@@ -1,0 +1,100 @@
+[menu footer_menu]
+start = "id-2"
+activeNode = 0
+listItemClasses = "footer-menu-item"
+primaryClasses = "footer-menu"
+secondaryClasses = "dropdown-menu"
+numberOfLevels = 1
+
+[cookieConsent]
+message = "This website uses cookies to ensure you get the best experience on our website."
+dismiss = "Got it!"
+learnMore = "More info"
+link = "/privacy-policy"
+theme = "dark-bottom"
+
+[jumbotron footer_disclimer]
+jumbotron = "footer"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+<div class="container-fluid border-box dark-background">{% component 'cookieConsent' %}
+    <div class="container">
+        <div class="row top-xs between-xs footer-menu-container">
+
+            <div class="col-md-6 col-xs-12 footer-disclaimer-container footer-right-border">
+                {% if (footer_funds_flag != null or footer_funds_text != '') %}
+                <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-sm col-xs-12">
+                    {% if footer_funds_flag %}
+                    <img class="text mr-0 mr-lg-1" style="height:60px;" src="{{ footer_funds_flag }}"/>
+                    {% endif %}
+                </div>
+                <div class="funding-text">
+                    {% component 'footer_disclimer' %}
+                </div>
+                {% endif %}
+                <div class="row between-xs middle-xs">
+                    <div class="col-sm-4 col-xs-12 start-md center-xs privacy"><a href="{{'privacy-policy'|page}}">Privacy Policy</a></div>
+                    <div class="col-md-8 col-xs-12">
+                        <div class="social-networks">
+                            Follow us
+                            <div class="icons">
+                                {% if enable_facebook and facebook_url %}
+                                <a href="{{facebook_url}}" target="_blank" class="pr p-secondary p-facebook normal" target="_blank"></a>
+                                {% endif %}
+                                {% if enable_twitter and twitter_url %}
+                                <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter normal" target="_blank"></a>
+                                {% endif %}
+                                {% if enable_linkedin and linkedin_url %}
+                                <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank"></a>
+                                {% endif %}
+                                {% if enable_youtube and youtube_url %}
+                                <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube normal" target="_blank"></a>
+                                {% endif %}
+                                {% if enable_instagram and instagram_url %}
+                                <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram normal" target="_blank"></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xs-12 menu_and_powered">
+                <div class="row between-md around-xs middle-xs">
+                    <div class="col-md-9 col-xs-12 start-md center-xs">
+                        {% if this.theme.subscribe %}
+                        Sign up to our newsletter and stay up to date!
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3 col-xs-12 end-md center-xs">
+                        {% if this.theme.subscribe %}
+                        <a href="{{this.theme.subscribe}}" target="_blank" class="btn-subscribe">Subscribe</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <div class="row between-xs footer_menu">
+                    <div class="col-xs-12 col-md-12 start-md center-xs">LINKS</div>
+                    <div class="col-xs-12 col-md-12 start-md center-xs">
+                        {% component 'footer_menu' %}
+                    </div>
+                </div>
+                <div class="row between-xs">
+                    <div class="col-xs-12 powered-by start-md center-xs">
+                        <span>Designed and powered by <a href="https://pensoft.net/" target="_blank">
+                            <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" /></a>
+                        </span>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+</div>

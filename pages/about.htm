@@ -1,0 +1,31 @@
+url = "/about"
+layout = "default"
+title = "About"
+is_hidden = 0
+meta_description = "about page"
+seo_keywords = "keywords"
+robot_index = "index"
+robot_follow = "follow"
+
+[siteSearchInclude]
+
+[jumbotron]
+jumbotron = "about-intro"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron actions]
+jumbotron = "actions"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+{% component 'siteSearchInclude' %}
+<h1 class="underline">About</h1>
+<div class="container about_intro" data-aos="fade-up">
+   {% component 'jumbotron' %}
+</div>
+<div class="container actions">
+   {% component 'actions' %}
+</div>

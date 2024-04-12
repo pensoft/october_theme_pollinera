@@ -1,0 +1,206 @@
+.jumbotron {
+    position: absolute;
+    z-index: 100;
+
+    .breakpoint-large-down({
+        padding-top: 95px;
+    });
+}
+
+.jumbotron p{
+  color: #ffffff!important;
+}
+
+.background .container{
+  padding: 0 5px;
+}
+
+
+.home .background{
+    img{
+        max-height: 362px;
+    }
+}
+
+.container:has(.tabs){
+    .breakpoint-large-down({
+        padding-top: 20px;
+    });
+}
+
+.mission{
+    .container{
+        padding: 0;
+    }
+}
+.about_intro{
+    padding: 0;
+    .container{
+        padding-bottom: 0;
+        text-align: center;
+        font-weight: 400;
+    }
+}
+
+@keyframes buzz {
+    10% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+    20% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+    30% {
+        -webkit-transform: translateX(3px) rotate(2deg);
+        transform: translateX(3px) rotate(2deg);
+    }
+    40% {
+        -webkit-transform: translateX(-3px) rotate(-2deg);
+        transform: translateX(-3px) rotate(-2deg);
+    }
+    50% {
+        -webkit-transform: translateX(2px) rotate(1deg);
+        transform: translateX(2px) rotate(1deg);
+    }
+    60% {
+        -webkit-transform: translateX(-2px) rotate(-1deg);
+        transform: translateX(-2px) rotate(-1deg);
+    }
+    70% {
+        -webkit-transform: translateX(2px) rotate(1deg);
+        transform: translateX(2px) rotate(1deg);
+    }
+    80% {
+        -webkit-transform: translateX(-2px) rotate(-1deg);
+        transform: translateX(-2px) rotate(-1deg);
+    }
+    90% {
+        -webkit-transform: translateX(1px) rotate(0);
+        transform: translateX(1px) rotate(0);
+    }
+    100% {
+        -webkit-transform: translateX(-1px) rotate(0);
+        transform: translateX(-1px) rotate(0);
+    }
+}
+
+.actions{
+    padding: 0;
+    .action_item{
+        border-radius: 20px;
+        position: relative;
+        padding: 29px 20px 40px 20px;
+        margin-bottom: 60px;
+        .insect{
+            &:hover, &:focus, &:active{
+                animation: 0.7s linear infinite buzz;
+            }
+        }
+        .action_item_s{
+            color: white;
+            font-weight: 400;
+            padding: 0 40px;
+            .breakpoint-large-down({
+                padding: 0;
+            });
+            h2{
+                color: white;
+                font-size: 53px;
+                font-weight: 500;
+                margin-bottom: 0;
+            }
+        }
+        .action_item_a{
+            color: #0F0F0F;
+            font-weight: 400;
+            padding: 0 40px;
+            .breakpoint-large-down({
+                padding: 0;
+                margin: 40px 0;
+            });
+            h2{
+                color: #0F0F0F;
+                font-size: 53px;
+                font-weight: 500;
+                margin-bottom: 0;
+            }
+        }
+        &:nth-of-type(1){
+            background: @yellow-color url("../../assets/images/S01-image.png") top left no-repeat;
+            background-size: 50%;
+            .breakpoint-large-down({
+                background-size: 100% 50%;
+            });
+            .insect{
+                position: absolute;
+                width: 212px;
+                height: 212px;
+                top: -100px;
+                right: -100px;
+                background: url("../../assets/images/Pollinera_illustrations_O_bicornis_COLOUR.png") center no-repeat;
+                background-size: contain;
+                .breakpoint-large-down({
+                    right: 0;
+                });
+            }
+        }
+        &:nth-of-type(2){
+            background: @yellow-color url("../../assets/images/S02-image.png") bottom right no-repeat;
+            background-size: 50%;
+            .breakpoint-large-down({
+                background-size: 100% 50%;
+            });
+            .insect{
+                position: absolute;
+                width: 193px;
+                height: 178px;
+                bottom: -83px;
+                left: -83px;
+                background: url("../../assets/images/Pollinera_illustrations_butterfly_COLOUR.png") center no-repeat;
+                background-size: contain;
+                .breakpoint-large-down({
+                    left: 0;
+                });
+            }
+        }
+        &:nth-of-type(3){
+            background: @yellow-color url("../../assets/images/S03-image.png") top left no-repeat;
+            background-size: 50%;
+            .breakpoint-large-down({
+                background-size: 100% 50%;
+            });
+            .insect{
+                position: absolute;
+                width: 206px;
+                height: 199px;
+                bottom: -100px;
+                right: -100px;
+                background: url("../../assets/images/Pollinera_illustrations_moth_COLOUR 2.png") center no-repeat;
+                background-size: contain;
+                .breakpoint-large-down({
+                    right: 0;
+                });
+            }
+        }
+        &:nth-of-type(4){
+            background: @yellow-color url("../../assets/images/S04-image.png") bottom right no-repeat;
+            background-size: 50%;
+            .breakpoint-large-down({
+                background-size: 100% 50%;
+            });
+            .insect{
+                position: absolute;
+                width: 193px;
+                height: 184px;
+                bottom: -100px;
+                left: -100px;
+                background: url("../../assets/images/Pollinera_illustrations_B_terrestris_COLOUR.png") center no-repeat;
+                background-size: contain;
+                .breakpoint-large-down({
+                    left: 0;
+                });
+            }
+        }
+    }
+}

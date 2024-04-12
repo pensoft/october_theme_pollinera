@@ -1,0 +1,130 @@
+.partners{
+    .container-fluid.bg-secondary{
+        padding: 0;
+        background: none;
+    }
+}
+.partners_list{
+    display: flex!important;
+    justify-content: space-between;
+    width: 100%;
+    .breakpoint-large-down({
+        justify-content: center;
+    });
+}
+.partner-item{
+    width: 90%;
+    //max-width: 100%;
+    margin-bottom: 40px;
+    background: white;
+    box-shadow: 0px 0px 6px #00000029;
+    border-radius: 20px;
+    padding: 30px 30px 80px 30px;
+
+    h4{
+        font-size: 25px;
+        line-height: 32px;
+        margin-bottom: 0;
+        a{
+            color: @dark-color;
+            background: url("../../assets/images/");
+        }
+    }
+    .partner_logo{
+        img{
+            max-width: 170px;
+            width: auto;
+            height: 120px;
+            object-fit: contain;
+            object-position: left;
+            margin: 0 auto;
+            display: flex;
+            .breakpoint-large-down({
+                width: auto;
+                max-width: 100%;
+                object-fit: contain;
+            });
+        }
+    }
+
+    .partner_description{
+        padding: 20px;
+        position: relative;
+        //transition: all 0.5s;
+
+        .partner_content{
+            height: 85px;
+            //max-height: 460px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s;
+
+            &:after {
+                position: absolute;
+                bottom: 0;
+                height: 100%;
+                width: 100%;
+                content: "";
+                background: linear-gradient(to top,
+                rgba(255,255,255, 1) 0%,
+                rgba(255,255,255, 0) 100%
+                );
+                pointer-events: none; /* so the text is still selectable */
+            }
+        }
+
+        &.changed{
+            .partner_content{
+                height: 100%;
+                overflow: visible;
+                background: none;
+                &:after {
+                    position: absolute;
+                    bottom: 0;
+                    height: 100%;
+                    width: 100%;
+                    content: "";
+                    background: unset;
+                    pointer-events: none; /* so the text is still selectable */
+                }
+            }
+
+            a{
+                &:after{
+                    background: url("../../assets/images/read full description-arrow-down.svg") right no-repeat;
+                    background-size: contain;
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        a{
+            position: absolute;
+            top: 140px;
+            color: #8BA8BA;
+
+            &:after{
+                background: url("../../assets/images/read full description-arrow-down.svg") right no-repeat;
+                background-size: contain;
+                content: ' ';
+                width: 15px;
+                height: 10px;
+                display: inline-flex;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .logo_and_link{
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+    }
+
+
+}
+
+.see_all_partners_link{
+    width: 100%;
+}
+

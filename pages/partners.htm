@@ -1,0 +1,47 @@
+url = "/partners"
+layout = "default"
+title = "Partners"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[jumbotron]
+jumbotron = "partners-intro"
+templates = "template3"
+description_limit = 0
+==
+<?php
+use Pensoft\Partners\Models\Partners;
+
+function onStart(){
+	$this['partners'] =  Partners::where('type', 1)->get();
+}
+?>
+==
+<h1 class="underline">Partners</h1>
+<div class="container">
+    {% component 'jumbotron' %}
+    <div class="row container">
+        <div class="row partners_list">
+            {% for k, partner in partners %}
+                <div class="partner-item key_{{k}}" data-aos="fade-up">
+                    <div class="row middle-xs logo_and_link">
+                        <div class="col-md-4 col-xs-12 start-md center-xs partner_logo"><a href="{{partner.instituion_url}}" target="_blank">
+                            <img alt="{{ partner.instituion }}" src="{{partner.cover.thumb(auto,120,{'mode':'crop'})}}"></a>
+                        </div>
+                        <div class="col-md-8 col-xs-12 start-md center-xs">
+                            <h4><a href="{{partner.instituion_url}}" target="_blank">{{partner.instituion}}</a></h4>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 partner_description">
+                        <div class="partner_content toogle-contact-paragraphs">
+                            {{partner.content|raw}}
+                        </div>
+                        <a href="javascript:void(0);">Read full description</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,28 @@
+url = "/work-packages"
+layout = "default"
+title = "Work packages"
+
+[siteSearchInclude]
+
+[accordion]
+maxItems = 10
+accordion = 1
+elementId = "structure"
+active = 5
+collapsible = "false"
+heightStyle = "content"
+iconsHeader = "ui-icon-triangle-1-e"
+iconsHeaderActive = "ui-icon-triangle-1-s"
+templates = "template5"
+==
+{% component 'siteSearchInclude' %}
+<h1 class="underline">Work packages</h1>
+<div class="container" id="work-packages">
+    <div class="row top-xs">
+        <div class="col-md-12 col-xs-12 work_packages blue">
+            {% component 'accordion' %}
+        </div>
+    </div>
+    <div class="schema" data-aos="zoom-in">
+    </div>
+</div>
