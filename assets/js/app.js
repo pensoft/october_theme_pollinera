@@ -400,6 +400,13 @@ $(document).ready(function() {
         });
     });
 
+
+    $('.get_involved_form_class').on( "ajaxSuccess", function() {
+
+        $(this).trigger("reset");
+        $('.loader').hide();
+    } );
+
 });
 
 
@@ -590,69 +597,6 @@ function hideMe(elem){
     $(elem).parent().hide();
 }
 
-function fetchMails(i, searchStr){
-    // $('.group_mailing_list').hide();
-    if($('.group_mailing_list_'+i).is(":visible")){
-        $('.group_mailing_list_'+i).hide();
-    }else{
-        //groups
-        $.request('onFetchMailingList', {
-            update: { 'mailing_list': '#mailing_list_tooltip_content_'+i,
-            },
-            data: {
-                search_str: searchStr
-            },
-        }).then(response => {
-            $('.group_mailing_list_'+i).html('<a class="close-btn" onclick="hideMe(this)">X</a>' + response.mailing_list);
-        });
-        $('.group_mailing_list').hide();
-        $('.group_mailing_list_'+i).show();
-    }
-
-}
-
-
-function fetchSingleMail(i, searchStr){
-    if($('.single_mailing_list_'+i).is(":visible")){
-        $('.single_mailing_list_'+i).hide();
-    }else{
-        //groups
-        $.request('onFetchSingleMail', {
-            update: { 'individual_email': '#individual_tooltip_content_'+i,
-            },
-            data: {
-                search_str: searchStr
-            },
-        }).then(response => {
-            $('.single_mailing_list_'+i).html('<a class="close-btn" onclick="hideMe(this)">X</a>' + response.individual_email);
-        });
-        $('.single_mailing_list').hide();
-        $('.single_mailing_list_'+i).show();
-    }
-}
-
-function initMailingTooltip(){
-    var searchStr = '';
-    $('.group-holder').eq(0).find('.inputWithTooltip span').each(function(i, obj) {
-        searchStr = $.trim($(obj).text());
-        $(this).parent().css('display', 'inline-grid');
-        $('<img src="/storage/app/media/CMS_icons_groups.svg" style="max-width: 16px; margin-left: 5px;" class="icon mailing_list_tooltip_'+i+'" onclick="fetchMails('+i+', \'' + searchStr + '\')" />').insertAfter($(this).parent());
-        $('<div class="group_mailing_list group_mailing_list_' + i + '" style="display: none;"></div>').insertAfter($(this).parent());
-
-
-    });
-    $('.group-holder').eq(1).find('.inputWithTooltip span').each(function(i, obj) {
-        searchStr = $.trim($(obj).text());
-        $('<img src="/storage/app/media/CMS_icons_individuals.svg" style="max-width: 16px; margin-left: 5px;" class="icon mailing_list_tooltip_individuals_'+i+'" onclick="fetchSingleMail('+i+', \'' + searchStr + '\')" />').insertAfter($(this).parent());
-        $(this).parent().css('display', 'inline-grid');
-        $('<div class="single_mailing_list single_mailing_list_' + i + '" style="display: none;"></div>').insertAfter($(this).parent());
-    });
-
-    $('.group-holder').eq(0).prepend( "<p style='margin-left: 10px; width: 100%;'>Prior to sending group emails, please make sure that all individuals you want to contact have been included in the respective group by clicking on the group icon.</p><p></p>" );
-    $('.group-holder').eq(1).prepend( "<p style='margin-left: 10px; width: 100%;'>To see each person’s email, click on the account icon.</p><p></p>" );
-
-}
-
 
 function getScreenSize() {
     var myHeight = 0;
@@ -719,6 +663,17 @@ function init() {
     // appendProfile()
     appendSignIn()
     appendSignOut()
+}
+
+function scrollToField(errors){
+    $(".get_involved_form input, .get_involved_form select, .get_involved_form .row").removeClass('red_err_field');
+    $.each(errors.scroll_to_field, function(key,valueObj){
+        $("#"+key).addClass('red_err_field');
+        $('html, body').animate({
+            scrollTop: $("#"+key).offset().top - 200
+        }, 1000);
+        return false; // breaks
+    });
 }
 
 init()

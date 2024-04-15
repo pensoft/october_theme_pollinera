@@ -123,68 +123,15 @@ ul.pagination{
 }
 
 
-
-
-@keyframes insects {
+@keyframes zoom-in-zoom-out {
     0% {
-        transform:translateY(0) rotate(-90deg);
+        transform: scale(0.8, 0.8);
     }
     50% {
-        transform:translateY(125px) rotate(90deg);
+        transform: scale(1, 1);
     }
     100% {
-        transform:translateY(0) rotate(-90deg);
-    }
-}
-@keyframes spin {
-    0% {
-        transform: rotate(0);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes beesandbombs {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-    50% {
-        transform: translate(-50%, -50%) rotate(120deg);
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-}
-
-@keyframes beesandbombscircle {
-    0% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(-360deg);
-    }
-}
-
-@keyframes beesandbombscirclerev {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(120deg);
-    }
-    50% {
-        transform: rotate(0deg);
-    }
-    75% {
-        transform: rotate(-300deg);
-    }
-    100% {
-        transform: rotate(-360deg);
+        transform: scale(0.8, 0.8);
     }
 }
 
@@ -201,11 +148,12 @@ ul.pagination{
     right: 3%;
     transition:transform 0.5s ease;
     z-index:10;
-    animation: 4s linear infinite beesandbombs;
+    animation: 4s linear infinite zoom-in-zoom-out;
     transform-origin: center;
     .breakpoint-laptop-down({
         width:100px;
         height:100px;
+        top: 10%;
     });
 }
 
@@ -220,7 +168,7 @@ ul.pagination{
     bottom: 23%;
     transition:transform 0.5s ease;
     z-index:10;
-    animation: 5s linear infinite insects;
+    animation: 5s linear infinite zoom-in-zoom-out;
     transform-origin:  center;
     .breakpoint-laptop-down({
         width:200px;
@@ -229,8 +177,8 @@ ul.pagination{
     .breakpoint-huge-down({
         width:170px;
         height:170px;
-        left: 4%;
-        bottom: 25%;
+        left: 0%;
+        bottom: 0%;
     });
 }
 
@@ -245,7 +193,7 @@ ul.pagination{
     bottom: 7%;
     transition:transform 0.5s ease;
     z-index:10;
-    animation: 3s linear infinite beesandbombscirclerev;
+    animation: 3s linear infinite zoom-in-zoom-out;
     transform-origin: center;
     .breakpoint-laptop-down({
         width:100px;
