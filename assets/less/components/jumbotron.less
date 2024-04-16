@@ -31,6 +31,10 @@
 .mission{
     .container{
         padding: 0;
+
+    }
+    .btn-primary{
+        margin-bottom: 30px;
     }
 }
 .about_intro{
@@ -42,65 +46,18 @@
     }
 }
 
-@keyframes buzz {
-    10% {
-        -webkit-transform: translateX(3px) rotate(2deg);
-        transform: translateX(3px) rotate(2deg);
-    }
-    20% {
-        -webkit-transform: translateX(-3px) rotate(-2deg);
-        transform: translateX(-3px) rotate(-2deg);
-    }
-    30% {
-        -webkit-transform: translateX(3px) rotate(2deg);
-        transform: translateX(3px) rotate(2deg);
-    }
-    40% {
-        -webkit-transform: translateX(-3px) rotate(-2deg);
-        transform: translateX(-3px) rotate(-2deg);
-    }
-    50% {
-        -webkit-transform: translateX(2px) rotate(1deg);
-        transform: translateX(2px) rotate(1deg);
-    }
-    60% {
-        -webkit-transform: translateX(-2px) rotate(-1deg);
-        transform: translateX(-2px) rotate(-1deg);
-    }
-    70% {
-        -webkit-transform: translateX(2px) rotate(1deg);
-        transform: translateX(2px) rotate(1deg);
-    }
-    80% {
-        -webkit-transform: translateX(-2px) rotate(-1deg);
-        transform: translateX(-2px) rotate(-1deg);
-    }
-    90% {
-        -webkit-transform: translateX(1px) rotate(0);
-        transform: translateX(1px) rotate(0);
-    }
-    100% {
-        -webkit-transform: translateX(-1px) rotate(0);
-        transform: translateX(-1px) rotate(0);
-    }
-}
-
 .actions{
     padding: 0;
     .action_item{
         border-radius: 20px;
         position: relative;
-        padding: 29px 20px 40px 20px;
         margin-bottom: 60px;
-        .insect{
-            &:hover, &:focus, &:active{
-                animation: 0.7s linear infinite buzz;
-            }
-        }
         .action_item_s{
             color: white;
             font-weight: 400;
-            padding: 0 40px;
+            padding: 0;
+            position: relative;
+            border-radius: 20px;
             .breakpoint-large-down({
                 padding: 0;
             });
@@ -110,14 +67,25 @@
                 font-weight: 500;
                 margin-bottom: 0;
             }
+            .paragraph{
+                background: rgba(12, 12, 12, 0.35);
+                padding: 29px 60px 40px 48px;
+                border-radius: 20px;
+                height: calc(~'100% - 69px');
+                .breakpoint-large-down({
+                    padding: 29px;
+                    height: calc(~'100% - 58px');
+                });
+            }
         }
         .action_item_a{
             color: #0F0F0F;
             font-weight: 400;
-            padding: 0 40px;
+            padding: 29px 48px 40px 50px;
+            background: @yellow-color;
+            border-radius: 20px;
             .breakpoint-large-down({
-                padding: 0;
-                margin: 40px 0;
+                padding: 29px;
             });
             h2{
                 color: #0F0F0F;
@@ -126,9 +94,13 @@
                 margin-bottom: 0;
             }
         }
+
+        .insect{
+            z-index: 2;
+        }
+
         &:nth-of-type(1){
-            background: @yellow-color url("../../assets/images/S01-image.png") top left no-repeat;
-            background-size: 50% 100%;
+            background: @yellow-color;
             .breakpoint-large-down({
                 background-size: 100% 50%;
             });
@@ -142,12 +114,22 @@
                 background-size: contain;
                 .breakpoint-large-down({
                     right: 0;
+                    top: -127px;
                 });
+            }
+            .action_item_s{
+                background: url("../../assets/images/s01.png") top left no-repeat;
+                background-size: cover;
+                border-radius: 20px;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+
             }
         }
         &:nth-of-type(2){
-            background: @yellow-color url("../../assets/images/S02-image.png") bottom right no-repeat;
-            background-size: 50% 100%;
+            background: @yellow-color;
             .breakpoint-large-down({
                 background-size: 100% 50%;
             });
@@ -160,13 +142,22 @@
                 background: url("../../assets/images/Pollinera_illustrations_butterfly_COLOUR.png") center no-repeat;
                 background-size: contain;
                 .breakpoint-large-down({
-                    left: 0;
+                    left: 105px;
+                    bottom: -94px;
                 });
+            }
+            .action_item_s{
+                background: url("../../assets/images/s02.jpeg") bottom right no-repeat;
+                background-size: cover;
+                border-radius: 20px;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
             }
         }
         &:nth-of-type(3){
-            background: @yellow-color url("../../assets/images/S03-image.png") top left no-repeat;
-            background-size: 50% 100%;
+            background: @yellow-color;
             .breakpoint-large-down({
                 background-size: 100% 50%;
             });
@@ -179,13 +170,23 @@
                 background: url("../../assets/images/Pollinera_illustrations_moth_COLOUR 2.png") center no-repeat;
                 background-size: contain;
                 .breakpoint-large-down({
-                    right: 0;
+                    right: 30px;
+                    transform: rotate(24deg);
+                    bottom: -119px;
                 });
+            }
+            .action_item_s{
+                background: url("../../assets/images/s03.jpg") top left no-repeat;
+                background-size: cover;
+                border-radius: 20px;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
             }
         }
         &:nth-of-type(4){
-            background: @yellow-color url("../../assets/images/S04-image.png") bottom right no-repeat;
-            background-size: 50% 100%;
+            background: @yellow-color;
             .breakpoint-large-down({
                 background-size: 100% 50%;
             });
@@ -198,8 +199,17 @@
                 background: url("../../assets/images/Pollinera_illustrations_B_terrestris_COLOUR.png") center no-repeat;
                 background-size: contain;
                 .breakpoint-large-down({
-                    left: 0;
+                    left: 16px;
                 });
+            }
+            .action_item_s{
+                background: url("../../assets/images/s04.png") bottom right no-repeat;
+                background-size: cover;
+                border-radius: 20px;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
             }
         }
     }

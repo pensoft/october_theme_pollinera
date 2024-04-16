@@ -400,13 +400,6 @@ $(document).ready(function() {
         });
     });
 
-
-    $('.get_involved_form_class').on( "ajaxSuccess", function() {
-
-        $(this).trigger("reset");
-        $('.loader').hide();
-    } );
-
 });
 
 
@@ -519,12 +512,13 @@ function appendSignOut() {
 		menu.find('>ul').append(li);
     });
 }
-
+//
 function appendSearchAndSocialMedia(){
 	var liSearch = '<li class="nav-item search_field"><a href=\"javascript: void(0);\" onclick=\"showSearchForm();\"></a></li>';
 	var liSocial = '<li class="nav-item social">' +
         '<a href=\"https://twitter.com/pollinERA_eu\" target=\"_blank\" class=\"pr p-twitter big\" target=\"_blank\"></a>' +
-        '<a href=\"https://www.linkedin.com/company/pollinera-eu\" target=\"_blank\" class=\"pr p-linkedin big\" target=\"_blank\"></a>';
+        '<a href=\"https://www.linkedin.com/company/pollinera-eu\" target=\"_blank\" class=\"pr p-linkedin big\" target=\"_blank\"></a>' +
+        '<a href=\"https://www.youtube.com/@PollinERA_eu\" target=\"_blank\" class=\"pr p-youtube big\" target=\"_blank\"></a>';
 	var menu = $('#menuToggle');
 	menu.find('>ul').append(liSearch).append(liSocial);
 }

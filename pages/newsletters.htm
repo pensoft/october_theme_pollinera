@@ -83,6 +83,10 @@ return Response::download($pathToFile, $fileName, $headers);
                     <img src="{{record.newsletter_image.path}}" title="{{record.name}}">
                 </div>
                 <div class="links">
+                    {% if record.url %}
+                    <a class="btn btn-primary" href="{{record.url}}" target="_blank">Read the nesletter</a>
+                    {% endif %}
+
                     {% if record.file %}
                     {{form_open({ request: 'onDownloadFile' }) }}
                     <input type="hidden" value="{{record.file.id}}" name="id">

@@ -90,11 +90,14 @@ $this['slug'] = $this->param('slug');
 
                     <div class="col-md-9 col-xs-12">
                         {% if entry.cover_image %}
-                        <img src="{{entry.cover_image.getThumb(174, 115, {'mode': 'crop'})}}">
+                        <a href="{{'events'|page}}/{{entry.slug}}">
+                            <img src="{{entry.cover_image.getThumb(174, 115, {'mode': 'crop'})}}">
+                        </a>
                         {% endif %}
 
-                        <span class="date_week mb-1">{{entry.start|date("l")}}</span>
-                        {{entry.title|raw}}
+                        <a href="{{'events'|page}}/{{entry.slug}}" class="date_week">{{entry.title|raw}}</a>
+                        <div class="body">{{ entry.description|length > 110 ? entry.description|striptags|slice(0, 110)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : entry.description|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
+
                     </div>
                     <div class="col-md-2 col-xs-12 end-md center-xs">
                         <a href="{{'events'|page}}/{{entry.slug}}" class="read_more">&nbsp;</a>

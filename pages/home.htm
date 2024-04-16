@@ -37,6 +37,7 @@ function onStart(){
         </div>
     </div>
 </div>
+{% if highlights.count %}
 <!-- latest from news -->
 <div class="container-fluid highlights-news bg-secondary">
     <div class="container">
@@ -68,3 +69,5 @@ function onStart(){
         <a class="btn btn-primary view_all" href="{{'news'|page}}">View all <i></i></a>
     </div>
 </div>
+
+{% endif %}

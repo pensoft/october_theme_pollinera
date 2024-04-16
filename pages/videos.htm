@@ -81,22 +81,22 @@ return Response::download($pathToFile, $fileName, $headers);
             <p class="card_title">{{ record.name|length > 65 ? record.name|striptags|slice(0, 65)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.name|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</p>
             {% if record.file %}
             <video controls="" width="100%"><source src="{{record.file.path}}" type="video/mp4"></video>
-            <p align="center"><a class=" btn btn-primary" href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}">Download</a></p>
 
             {% endif %}
 
-            {% if record.youtube_url %}
-            <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="{{record.youtube_url}}" width="100%" height="422"></iframe>
 
-            <p>&nbsp;</p>
-            {% endif %}
+            <div class="links">
+                {% if record.youtube_url %}
+                <a class="btn btn-primary" href="{{ record.youtube_url|replace({'/embed/': '/watch?v='}) }}" target="_blank">Youtube</a>
+                {% endif %}
 
-            {% if record.vimeo_url %}
-            <iframe width="100%" height="422" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    src="{{record.vimeo_url}}">
-            </iframe>
-            <p>&nbsp;</p>
-            {% endif %}
+                {% if record.file %}
+                <a class=" btn btn-primary btn-download" href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}">Download</a>
+                {% endif %}
+
+            </div>
+
+
         </div>
 
         {% else %}
