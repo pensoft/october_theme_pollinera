@@ -16,7 +16,7 @@ description_limit = 0
 <?php
 use Pensoft\Articles\Models\Article;
 function onStart(){
-    $this['highlights'] = Article::news()->where('published', 'true')->descPublished()->take(3)->get()->map(function($item){
+    $this['highlights'] = Article::news()->where('published', 'true')->descPublished()->take(6)->get()->map(function($item){
         $item->content = str_limit(strip_tags($item->content), 90);
         $item->href = $item->slug;
         return $item;
@@ -27,7 +27,7 @@ function onStart(){
 <div class="container mission">
     <div class="row">
         <div class="col-md-6 col-xs-12 data-aos">
-           
+
             {% component 'jumbotron' %}
             <a href="{{'about'|page}}" class="btn btn-primary">Learn more</a>
         </div>
@@ -40,7 +40,7 @@ function onStart(){
 <!-- latest from news -->
 <div class="container-fluid highlights-news bg-secondary">
     <div class="container">
-        
+
         <h1 class="display-1">Latest news</h1>
     </div>
     <div class="news-carousel">
