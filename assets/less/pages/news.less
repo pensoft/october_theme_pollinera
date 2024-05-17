@@ -48,7 +48,7 @@ nav:not(.navbar){
     width: 800px;
     max-width: 100%;
     margin: 0 auto;
-    font-size: 20px;
+    font-size: 18px;
     .text-published{
         position: relative;
         margin: 0px auto;
@@ -73,7 +73,6 @@ nav:not(.navbar){
 
 
         .content{
-            font-size: 20px;
             color: #8A8A8A;
             .breakpoint-small-down({
                 margin-left: 0px;
@@ -84,18 +83,23 @@ nav:not(.navbar){
             text-align: center!important;
             color: #4e4e4e;
             font-size: 36px;
-            .breakpoint-small-down({
+            .breakpoint-large-down({
                 margin-left: 0px;
+                font-size: 25px;
             });
         }
 
         img{
             max-width: 100% !important;
             border-radius: 10px;
-            width: 603px!important;
+            // width: 603px!important;
+            object-fit: none;
             height: auto;
             margin: 20px auto;
-            display: block;
+            // display: block;
+        }
+        p img{
+            object-fit: contain!important;
         }
         .caption{
             text-align: center;
@@ -164,7 +168,7 @@ nav:not(.navbar){
             border-radius: 20px;
             background: white;
             display: flex;
-            align-items: start;
+            // align-items: start;
             position: relative;
             margin-top: 30px;
             margin-left: 0!important;
@@ -175,6 +179,7 @@ nav:not(.navbar){
             img{
                 width: 386px;
                 height: 203px;
+                object-fit: cover;
                 border-radius: 20px 20px 0 0;
                 max-width: 100%;
                 .breakpoint-large-down({
@@ -206,6 +211,9 @@ nav:not(.navbar){
 
             .news-container{
                 padding: 20px;
+                display: flex;
+                justify-content: space-between;
+                flex-direction: column;
             }
 
             .card-title{
@@ -213,6 +221,11 @@ nav:not(.navbar){
                 font-weight: bold;
                 color: #4E4E4E;
                 text-align: left;
+                height: 225px;
+                .breakpoint-large-down({
+                    height: auto;
+                    font-size: 18px;
+                });
             }
 
             .body{
@@ -458,6 +471,7 @@ nav:not(.navbar){
                 width: 100%;
             });
         }
+        
     }
 
     .home-news-cover img {
@@ -467,8 +481,10 @@ nav:not(.navbar){
         border-radius: 10px;
         max-width: 100%;
         .breakpoint-large-down({
-            width: 100%;
+            width: auto;
+            height: 200px;
             margin: 0 auto 20px auto;
+            object-fit: cover;
         });
     }
 

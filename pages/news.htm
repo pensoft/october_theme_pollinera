@@ -100,7 +100,7 @@ $this['related'] = $related;
 	<div class="row single-news-item">
 
         <div class="col-xs-12">
-            <div class="text-published">{{article.date|date("j M Y")}}</div>
+            <div class="text-published">{{article.published_at|date("j M Y")}}</div>
         </div>
         <div class="col-xs-12 news-title">
             <h1 class="single-new-title">{{article.title}}</h1>
@@ -137,23 +137,25 @@ $this['related'] = $related;
     {% spaceless %}
         <div class="col-md-4 col-xs-12 news-item center-xs center-md">
             <div class="row news_column">
-                <a href="{{'news'|page}}/{{record.slug}}">
+                <a href="{{'news'|page}}/{{record.slug}}" style="height: 203px;">
                     {% if record.cover %}
                     <div class="news-image col-xs-12 center-xs">
-                        <img class="news-img-top" src="{{record.cover.getThumb(379, 305, {'mode': 'crop'})}}">
+                        <img class="news-img-top" src="{{record.cover.getThumb(358, 203, {'mode': 'crop'})}}">
                     </div>
                     {% endif %}
+                 </a>
                     <div class="news-container col-xs-12">
                         <div class="news-title">
-                            <h3 class="card-title">{{ record.title|length > 40 ? record.content|striptags|slice(0, 40)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3>
+                            <!--<h3 class="card-title">{{ record.title|length > 40 ? record.content|striptags|slice(0, 40)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3>-->
+                            <a href="{{'news'|page}}/{{record.slug}}"><h3 class="card-title">{{ record.title}}</h3></a>
                         </div>
                         <div class="body">{{ record.content|length > 90 ? record.content|striptags|slice(0, 90)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
                         <div class="row read-more-row">
-                            <a class="read-more">{{'Read more' |_}}</a>
+                            <a class="read-more" href="{{'news'|page}}/{{record.slug}}">{{'Read more' |_}}</a>
                         </div>
                     </div>
-                    <div class="text-published">{{record.date|date("j M Y")}}</div>
-                </a>
+                    <div class="text-published">{{record.published_at|date("j M Y")}}</div>
+                
             </div>
 
         </div>

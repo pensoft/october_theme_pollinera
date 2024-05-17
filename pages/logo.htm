@@ -80,7 +80,7 @@ return Response::download($pathToFile, $fileName, $headers);
             {% spaceless %}
             {% if record.logo_image %}
 
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-4 col-xs-12 mb-4">
                 <div class="logo-container {{record.name}}">
                     <img src="{{record.logo_image.path}}" title="{{record.name}}">
                 </div>

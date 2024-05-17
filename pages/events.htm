@@ -12,6 +12,7 @@ limit = "null"
 category = "null"
 language = "en"
 redirect_to_detailed_page = "false"
+default_view = "dayGridMonth"
 ==
 <?php
 use Pensoft\Calendar\Models\Entry;
@@ -69,7 +70,6 @@ $this['slug'] = $this->param('slug');
     <div class="events_tabs">
         <a class="" href="#listView">List view</a>
         <a class="" href="#calendarView">Calendar view</a>
-
     </div>
 </div>
 <!--tabs content	-->
@@ -91,7 +91,7 @@ $this['slug'] = $this->param('slug');
                     <div class="col-md-9 col-xs-12">
                         {% if entry.cover_image %}
                         <a href="{{'events'|page}}/{{entry.slug}}">
-                            <img src="{{entry.cover_image.getThumb(174, 115, {'mode': 'crop'})}}">
+                            <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}">
                         </a>
                         {% endif %}
 

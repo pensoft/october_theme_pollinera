@@ -22,6 +22,10 @@ a {
         outline: none;
     }
 }
+ol{
+                list-style-type:decimal;
+                padding-left: 20px;
+            }
 
 button{
     &:focus{
@@ -358,7 +362,7 @@ ul.pagination{
 #layout-content {
     padding-bottom: 345px;
     &:not(.home){
-        margin-top: 109px;
+        margin-top: 100px;
         background: url("../../assets/images/header-background.png") top center no-repeat;
         background-size: contain;
         h1.underline{
@@ -471,6 +475,7 @@ ul.pagination{
         color: @yellow-color;
         .breakpoint-large-down ({
             margin-top: 20px;
+            justify-content: center;
         });
 
         .icons{
@@ -546,6 +551,9 @@ ul.pagination{
     .footer-menu{
         display: grid;
         grid-template-columns: 33% 33% 33%;
+        .breakpoint-large-down({
+            grid-template-columns: 100%;
+        });
     }
 }
 

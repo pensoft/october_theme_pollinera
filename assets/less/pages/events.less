@@ -313,16 +313,32 @@
             font-weight: bold;
             width: 100%;
             color: @dark-color;
+            .breakpoint-large-down({
+                font-size: 18px;
+            });
 
         }
         .col-md-9.col-xs-12{
             padding-left: 30px;
+            .breakpoint-large-down({
+                padding-left: 10px;
+            });
         }
 
         img{
             border-radius: 20px;
             float: left;
             margin-right: 30px;
+            width: 174px;
+            height: auto;
+            object-fit: cover;
+            .breakpoint-large-down({
+                float: none;
+                margin-right: 0;
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            });
         }
 
         .read_more{
@@ -342,6 +358,12 @@
                 opacity: 1;
             }
 
+        }
+
+        .body{
+            .breakpoint-large-down({
+                font-size: 18px;
+            });
         }
 
         .breakpoint-large-down({

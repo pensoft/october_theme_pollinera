@@ -2,8 +2,7 @@ url = "/"
 layout = "default"
 title = "PollinERA"
 is_hidden = 0
-meta_description = "homepage desc"
-seo_keywords = "keywords"
+meta_description = "The PollinERA project"
 robot_index = "index"
 robot_follow = "follow"
 
@@ -28,7 +27,7 @@ function onStart(){
 <div class="container mission">
     <div class="row">
         <div class="col-md-6 col-xs-12 data-aos">
-            <span class="subtitle">Our Mission</span>
+           
             {% component 'jumbotron' %}
             <a href="{{'about'|page}}" class="btn btn-primary">Learn more</a>
         </div>
@@ -41,8 +40,8 @@ function onStart(){
 <!-- latest from news -->
 <div class="container-fluid highlights-news bg-secondary">
     <div class="container">
-        <span class="subtitle">News</span>
-        <h1 class="display-1">Our latest news</h1>
+        
+        <h1 class="display-1">Latest news</h1>
     </div>
     <div class="news-carousel">
         {% for highlight in highlights %}
@@ -50,7 +49,7 @@ function onStart(){
             <div class="row news-item">
                 <div class="col-md-4 col-xs-12 home-news-cover">
                     <a href="/news/{{highlight.slug}}">
-                        <img src="{{ highlight.cover.thumb(199, 200, {'mode': 'crop'})}}" alt="{{ highlight.title }}">
+                        <img src="{{ highlight.cover.thumb(auto, 200, {'mode': 'crop'})}}" alt="{{ highlight.title }}">
                     </a>
                 </div>
                 <div class="col-md-8 col-xs-12 news-content">

@@ -71,6 +71,11 @@
                 );
                 pointer-events: none; /* so the text is still selectable */
             }
+
+            ol{
+                list-style-type:decimal;
+                padding-left: 20px;
+            }
         }
 
         &.changed{
@@ -89,7 +94,7 @@
                 }
             }
 
-            a{
+            a.read_full{
                 &:after{
                     background: url("../../assets/images/read full description-arrow-down.svg") right no-repeat;
                     background-size: contain;
@@ -98,7 +103,7 @@
             }
         }
 
-        a{
+        a.read_full{
             position: absolute;
             top: 140px;
             color: #8BA8BA;

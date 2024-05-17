@@ -269,7 +269,7 @@ $(document).ready(function() {
         ]
     });
 
-    $(".partner_description a").click(function() {
+    $(".partner_description a.read_full").click(function() {
         var $el, $ps, $up, totalHeight;
         totalHeight = 75;
         $el = $(this) // read-more link
@@ -277,7 +277,7 @@ $(document).ready(function() {
         $up  = $el.parent(); // partner_description
         if ($el.text() == "Read full description") {
 
-            $ps = $up.find(".partner_content p");
+            $ps = $up.find(".partner_content p, .partner_content ul, .partner_content ol");
 
             // measure how tall inside should be by adding together heights of all inside paragraphs (except read-more paragraph)
             $ps.each(function() {
