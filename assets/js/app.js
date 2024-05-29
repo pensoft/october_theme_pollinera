@@ -269,6 +269,15 @@ $(document).ready(function() {
         ]
     });
 
+    $(".trigger_prev").click(function(){
+        $(".slick-prev").click();
+        return false;
+    });
+    $(".trigger_next").click(function(){
+        $(".slick-next").click();
+        return false;
+    });
+
     $(".partner_description a.read_full").click(function() {
         var $el, $ps, $up, totalHeight;
         totalHeight = 75;

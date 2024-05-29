@@ -471,7 +471,7 @@ nav:not(.navbar){
                 width: 100%;
             });
         }
-        
+
     }
 
     .home-news-cover img {
@@ -486,6 +486,25 @@ nav:not(.navbar){
             margin: 0 auto 20px auto;
             object-fit: cover;
         });
+    }
+
+    .trigger_prev,
+    .trigger_next{
+        position: absolute;
+        width: 250px;
+        height: 256px;
+        z-index: 999;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    .trigger_prev{
+        left: 0;
+    }
+
+    .trigger_next{
+        right: 0;
     }
 
     /* Custom slick dots for news highlights on homepage */
