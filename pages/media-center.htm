@@ -29,9 +29,9 @@ function onStart(){
         {% if logos.count() %}
         <div class="col-sm-2 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/logo" title="Logo">
-                    <span class="card_image_container" style="background: url({{'media-center/Logo and branding.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/logo" title="Logo"></span>
-                    <br><span class="media_label">Logo</span>
+                <a href="{{url('media-center')}}/brand-kit" title="Brand kit">
+                    <span class="card_image_container" style="background: url({{'media-center/Logo and branding.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/brand-kit" title="Brand kit"></span>
+                    <br><span class="media_label">Brand kit</span>
                 </a>
             </div>
         </div>
@@ -39,24 +39,15 @@ function onStart(){
         {% if flyers.count() %}
         <div class="col-sm-2 col-xs-12">
             <div class="card-container text-center">
-                <a href="{{url('media-center')}}/promotional-materials" title="Promotional materials">
-                    <span class="card_image_container" style="background: url({{'media-center/Promotional materials.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/promotional-materials" title="Promotional materials"></span>
-                    <br><span class="media_label">Promotional materials</span>
+                <a href="{{url('media-center')}}/project-materials" title="Project materials">
+                    <span class="card_image_container" style="background: url({{'media-center/Promotional materials.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/project-materials" title="Project materials"></span>
+                    <br><span class="media_label">Project materials</span>
                 </a>
             </div>
         </div>
         {% endif %}
 
-        {% if pressreleases.count() %}
-        <div class="col-sm-2 col-xs-12">
-            <div class="card-container text-center">
-                <a href="{{url('media-center')}}/press-releases" title="Press releases">
-                    <span class="card_image_container" style="background: url({{'media-center/press.svg'|media}}) center center no-repeat;" href="{{url('media-center')}}/press-releases" title="Press releases"></span>
-                    <br><span class="media_label">Press releases</span>
-                </a>
-            </div>
-        </div>
-        {% endif %}
+        
         {% if videos.count() %}
         <div class="col-sm-2 col-xs-12">
             <div class="card-container text-center">

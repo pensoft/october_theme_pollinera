@@ -145,16 +145,17 @@ $this['related'] = $related;
                     {% endif %}
                  </a>
                     <div class="news-container col-xs-12">
+                        <div class="text-published">{{record.published_at|date("j M Y")}}</div>
                         <div class="news-title">
                             <!--<h3 class="card-title">{{ record.title|length > 40 ? record.content|striptags|slice(0, 40)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3>-->
-                            <a href="{{'news'|page}}/{{record.slug}}"><h3 class="card-title">{{ record.title}}</h3></a>
+                            <a href="{{'news'|page}}/{{record.slug}}"><h3 class="card-title">{{ record.title|length > 45 ? record.title|striptags|slice(0, 45)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3></a>
                         </div>
                         <div class="body">{{ record.content|length > 90 ? record.content|striptags|slice(0, 90)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
                         <div class="row read-more-row">
                             <a class="read-more" href="{{'news'|page}}/{{record.slug}}">{{'Read more' |_}}</a>
                         </div>
                     </div>
-                    <div class="text-published">{{record.published_at|date("j M Y")}}</div>
+                    
                 
             </div>
 
