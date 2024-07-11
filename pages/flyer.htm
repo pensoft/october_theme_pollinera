@@ -84,11 +84,16 @@ return Response::download($pathToFile, $fileName, $headers);
                     <img src="{{record.flyer_image.path}}" title="{{record.name}}">
                 </div>
                 <div class="links">
+<!--                    {% if record.file %}-->
+<!--                    {{form_open({ request: 'onDownloadFile' }) }}-->
+<!--                    <input type="hidden" value="{{record.file.id}}" name="id">-->
+<!--                    <button type="submit" data-attach-loading class="btn btn-primary">Download</button>-->
+<!--                    {{ form_close() }}-->
+<!--                    {% endif %}-->
                     {% if record.file %}
-                    {{form_open({ request: 'onDownloadFile' }) }}
-                    <input type="hidden" value="{{record.file.id}}" name="id">
-                    <button type="submit" data-attach-loading class="btn btn-primary">Download</button>
-                    {{ form_close() }}
+
+                    <a href="{{record.file.path}}" target="_blank" data-attach-loading class="btn btn-primary">Download</a>
+
                     {% endif %}
 
                 </div>
