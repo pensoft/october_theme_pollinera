@@ -9,8 +9,9 @@ robot_follow = "follow"
 
 [siteSearchInclude]
 
-[jumbotron]
+[jumbotron background]
 jumbotron = "about-intro"
+title = 1
 background = "transperant"
 templates = "template3"
 description_limit = 0
@@ -20,11 +21,43 @@ jumbotron = "actions"
 background = "transperant"
 templates = "template3"
 description_limit = 0
+
+[jumbotron vision]
+jumbotron = "vision"
+title = 1
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron approach]
+jumbotron = "approach"
+title = 1
+background = "transperant"
+templates = "template3"
+description_limit = 0
+
+[jumbotron specific_actions]
+jumbotron = "specific-objectives-actions"
+title = 1
+background = "transperant"
+templates = "template3"
+description_limit = 0
 ==
 {% component 'siteSearchInclude' %}
 <h1 class="underline">About</h1>
-<div class="container about_intro" data-aos="fade-up">
-   {% component 'jumbotron' %}
+<div class="container background" data-aos="fade-up">
+   {% component 'background' %}
+</div>
+<div class="container vision" data-aos="fade-up">
+   {% component 'vision' %}
+</div>
+<div class="container-fluid bg-approach">
+    <div class="container approach" data-aos="fade-up">
+       {% component 'approach' %}
+    </div>
+</div>
+<div class="container specific_actions" data-aos="fade-up">
+   {% component 'specific_actions' %}
 </div>
 <div class="container actions">
    {% component 'actions' %}
