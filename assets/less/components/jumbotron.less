@@ -240,7 +240,7 @@
 
 .background{
     background: url("../../assets/images/about-background.png") left center no-repeat;
-    background-size: 50%;
+    background-size: contain;
     display: flex;
     justify-content: flex-start;
     padding-left: 0;
@@ -256,11 +256,11 @@
         background-size: contain;
         width: 161px;
         height: 161px;
-        bottom: -50px;
-        left: -73px;
-        .breakpoint-laptop-down({
-            bottom: 5px;
-        });
+        bottom: -72px;
+        left: -72px;
+        //.breakpoint-laptop-down({
+        //    bottom: 5px;
+        //});
     }
     .breakpoint-large-down({
         background: url("../../assets/images/about-vision.png") top center no-repeat;
@@ -296,7 +296,7 @@
 
 .vision{
     background: url("../../assets/images/about-vision.png") right center no-repeat;
-    background-size: 50%;
+    background-size: contain;
     display: flex;
     justify-content: flex-end;
     padding-left: 0;
@@ -313,9 +313,9 @@
         height: 144px;
         bottom: -70px;
         right: -70px;
-        .breakpoint-laptop-down({
-            bottom: -14px;
-        });
+        //.breakpoint-laptop-down({
+        //    bottom: -14px;
+        //});
     }
     .breakpoint-large-down({
         background: url("../../assets/images/about-vision.png") top center no-repeat;
