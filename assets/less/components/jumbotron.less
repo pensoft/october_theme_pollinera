@@ -248,6 +248,24 @@
     padding-top: 80px;
     padding-bottom: 80px;
     margin: 20px 0 50px 0;
+    position: relative;
+    &:after{
+        position: absolute;
+        content: ' ';
+        background: url("../../assets/images/elipse.svg") bottom left no-repeat;
+        background-size: contain;
+        width: 161px;
+        height: 161px;
+        bottom: -50px;
+        left: -73px;
+        .breakpoint-laptop-down({
+            bottom: 5px;
+        });
+    }
+    .breakpoint-large-down({
+        background: url("../../assets/images/about-vision.png") top center no-repeat;
+        background-size: 100%;
+    });
     .container-fluid{
         display: flex;
         justify-content: end;
@@ -264,6 +282,10 @@
         font-size: 16px;
         line-height: 1.6em;
         font-weight: 100;
+        .breakpoint-large-down({
+            width: 100%;
+            background-color: rgba(11, 11, 11, 0.5);
+        });
         h1{
             font-size: 25px;
             text-transform: uppercase;
@@ -282,6 +304,23 @@
     padding-top: 80px;
     padding-bottom: 80px;
     margin: 20px 0 50px 0;
+    &:after{
+        position: absolute;
+        content: ' ';
+        background: url("../../assets/images/elipse.svg") bottom right no-repeat;
+        background-size: contain;
+        width: 144px;
+        height: 144px;
+        bottom: -70px;
+        right: -70px;
+        .breakpoint-laptop-down({
+            bottom: -14px;
+        });
+    }
+    .breakpoint-large-down({
+        background: url("../../assets/images/about-vision.png") top center no-repeat;
+        background-size: 100%;
+    });
     .container-fluid{
         display: flex;
         justify-content: start;
@@ -298,6 +337,10 @@
         font-size: 16px;
         line-height: 1.6em;
         font-weight: 100;
+        .breakpoint-large-down({
+            width: 100%;
+            background-color: rgba(11, 11, 11, 0.5);
+        });
         h1{
             font-size: 25px;
             text-transform: uppercase;
