@@ -216,6 +216,14 @@
 
 .container-fluid.bg-approach{
     background: #F8F8F8;
+    .container{
+        img{
+            width: 70%;
+            .breakpoint-large-down({
+                width: 100%;
+            });
+        }
+    }
 }
 .specific_actions{
     padding: 0;
@@ -226,6 +234,9 @@
         font-size: 25px!important;
         color: #4E4E4E;
         text-transform: uppercase;
+        .breakpoint-large-down({
+            font-size: 20px!important;
+        });
     }
 }
 

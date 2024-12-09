@@ -79,12 +79,13 @@ return Response::download($pathToFile, $fileName, $headers);
 
             <div class="col-md-4 col-xs-12">
                 <p align="center">{{record.name}}</p>
+                <div class="text-published" style="text-align: center;">{{record.date | date('d F Y') }}</div>
                 <div class="flyer-container {{record.name}}">
                     <img src="{{record.newsletter_image.path}}" title="{{record.name}}">
                 </div>
                 <div class="links">
                     {% if record.url %}
-                    <a class="btn btn-primary" href="{{record.url}}" target="_blank">Read the nesletter</a>
+                    <a class="btn btn-primary" href="{{record.url}}" target="_blank">View online</a>
                     {% endif %}
 
                     {% if record.file %}
