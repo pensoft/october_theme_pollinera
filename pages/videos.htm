@@ -70,7 +70,6 @@ return Response::download($pathToFile, $fileName, $headers);
 }
 ?>
 ==
-
 {% set records = mediaVideosList %}
 <h1 class="underline">Videos</h1>
 <div class="container">
@@ -78,6 +77,18 @@ return Response::download($pathToFile, $fileName, $headers);
     <div class="row">
         {% for record in records %}
         <div class="col-md-4 col-xs-12">
+
+                {% if record.youtube_url %}
+                    <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" src="{{record.youtube_url}}" width="100%" height="267"></iframe>
+                    {% endif %}
+
+                    {% if record.vimeo_url %}
+                    <iframe width="100%" height="267" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            src="{{record.vimeo_url}}">
+                    </iframe>
+
+                    {% endif %}
+
             <p class="card_title">{{ record.name|length > 65 ? record.name|striptags|slice(0, 65)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.name|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</p>
             {% if record.file %}
             <video controls="" width="100%"><source src="{{record.file.path}}" type="video/mp4"></video>
@@ -85,7 +96,7 @@ return Response::download($pathToFile, $fileName, $headers);
             {% endif %}
 
 
-            <div class="links">
+            <!--<div class="links">
                 {% if record.youtube_url %}
                 <a class="btn btn-primary" href="{{ record.youtube_url|replace({'/embed/': '/watch?v='}) }}" target="_blank">Youtube</a>
                 {% endif %}
@@ -94,7 +105,7 @@ return Response::download($pathToFile, $fileName, $headers);
                 <a class=" btn btn-primary btn-download" href="{{ ''| page }}?{{queries}}&download={{record.file.id}}&file_name={{record.name|replace({' ': '_'})}}">Download</a>
                 {% endif %}
 
-            </div>
+            </div>-->
 
 
         </div>
