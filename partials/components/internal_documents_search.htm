@@ -17,15 +17,15 @@
 					{% endfor %}
 				{% endif %}
 					{% if file.isImage %}
-						<img  src="{{file.thumb(30,30,{'mode':'crop'})}}" alt="{{file.file_name}}" style="float: left; margin-right: 8px;" /> {{ file.file_name }}
+						<img src="{{file.thumb(30,30,{'mode':'crop'})}}" alt="{{file.file_name}}" style="float: left; margin-right: 8px;" /> {{ file.file_name }}
 					{% else %}
 
 						{% if file.getExtension() == 'docx' or file.getExtension() == 'doc' %}
-						<img src="{{'files_doc.svg'|media}}" style="width: 30px; float: left; margin-right: 8px;"> {{ file.file_name }}
+						<img src="{{'files_doc.svg'|media}}" alt="Document" style="width: 30px; float: left; margin-right: 8px;"> {{ file.file_name }}
 						{% elseif file.getExtension() == 'pdf' %}
-						<img src="{{'files_pdf.svg'|media}}" style="width: 30px; float: left; margin-right: 8px;"> {{ file.file_name }}
+						<img src="{{'files_pdf.svg'|media}}" alt="PDF" style="width: 30px; float: left; margin-right: 8px;"> {{ file.file_name }}
 						{% else %}
-						<img src="{{'files_file.svg'|media}}" style="width: 30px; float: left; margin-right: 8px;"> {{ file.file_name }}
+						<img src="{{'files_file.svg'|media}}" alt="File" style="width: 30px; float: left; margin-right: 8px;"> {{ file.file_name }}
 						{% endif %}
 
 					{% endif %}

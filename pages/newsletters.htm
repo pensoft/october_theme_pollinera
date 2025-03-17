@@ -81,7 +81,7 @@ return Response::download($pathToFile, $fileName, $headers);
                 <p align="center">{{record.name}}</p>
                 <div class="text-published" style="text-align: center;">{{record.date | date('d F Y') }}</div>
                 <div class="flyer-container {{record.name}}">
-                    <img src="{{record.newsletter_image.path}}" title="{{record.name}}">
+                    <img src="{{record.newsletter_image.path}}" title="{{record.name}}" alt="{{record.name}}">
                 </div>
                 <div class="links">
                     {% if record.url %}

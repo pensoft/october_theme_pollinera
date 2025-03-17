@@ -93,7 +93,7 @@ $this['slug'] = $this->param('slug');
                     <div class="col-md-9 col-xs-12">
                         {% if entry.cover_image %}
                         <a href="{{'events'|page}}/{{entry.slug}}">
-                            <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}">
+                            <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}" alt="{{entry.title}}">
                         </a>
                         {% endif %}
 
@@ -131,7 +131,7 @@ $this['slug'] = $this->param('slug');
                     <div class="col-md-9 col-xs-12">
                         {% if entry.cover_image %}
                         <a href="{{'events'|page}}/{{entry.slug}}">
-                            <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}">
+                            <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}" alt="{{entry.title}}">
                         </a>
                         {% endif %}
 
@@ -171,7 +171,7 @@ $this['slug'] = $this->param('slug');
         </div>
         <div class="col-xs-12 center-xs">
             {% if entry.cover_image %}
-            <img class="content mb-2" src="{{ entry.cover_image|crop_image|resize(673, auto, { mode: 'crop' }) }}" />
+            <img class="content mb-2" src="{{ entry.cover_image|crop_image|resize(673, auto, { mode: 'crop' }) }}" alt="{{ entry.title }}" />
             {% endif %}
             {% if entry.caption %}
             <div class="caption">{{entry.caption|raw}}</div>

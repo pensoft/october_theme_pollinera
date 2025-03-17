@@ -527,7 +527,8 @@ function appendSearchAndSocialMedia(){
 	var liSocial = '<li class="nav-item social">' +
         '<a href=\"https://twitter.com/pollinERA_eu\" target=\"_blank\" class=\"pr p-twitter big\" target=\"_blank\"></a>' +
         '<a href=\"https://www.linkedin.com/company/pollinera-eu\" target=\"_blank\" class=\"pr p-linkedin big\" target=\"_blank\"></a>' +
-        '<a href=\"https://www.youtube.com/@PollinERA_eu\" target=\"_blank\" class=\"pr p-youtube big\" target=\"_blank\"></a>';
+        '<a href=\"https://www.youtube.com/@PollinERA_eu\" target=\"_blank\" class=\"pr p-youtube big\" target=\"_blank\"></a>' +
+        '<a href=\"https://www.instagram.com/pollinera_eu/\" target=\"_blank\" class=\"pr p-instagram big\" target=\"_blank\"></a>';
 	var menu = $('#menuToggle');
 	menu.find('>ul').append(liSearch).append(liSocial);
 }

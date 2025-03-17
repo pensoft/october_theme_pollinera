@@ -107,7 +107,7 @@ $this['related'] = $related;
         </div>
 		<div class="col-xs-12">
 			{% if article.cover %}
-			<img class="content" src="{{ article.cover|crop_image|resize(673, auto, { mode: 'crop' }) }}" />
+			<img class="content" src="{{ article.cover|crop_image|resize(673, auto, { mode: 'crop' }) }}" alt="{{ article.title }}" />
 			{% endif %}
 			{% if article.caption %}
                 <div class="caption">{{article.caption|raw}}</div>
@@ -142,7 +142,7 @@ $this['related'] = $related;
                 <a href="{{'news'|page}}/{{record.slug}}" style="height: 203px;">
                     {% if record.cover %}
                     <div class="news-image col-xs-12 center-xs">
-                        <img class="news-img-top" src="{{record.cover.getThumb(358, 203, {'mode': 'crop'})}}">
+                        <img class="news-img-top" src="{{record.cover.getThumb(358, 203, {'mode': 'crop'})}}" alt="{{ record.title }}">
                     </div>
                     {% endif %}
                  </a>

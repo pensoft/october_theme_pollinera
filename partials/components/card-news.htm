@@ -15,7 +15,7 @@ function onStart()
     
     {% if image %}
     <a class="news-image" href="{{url}}">
-        <img class="news-img-left" src="{{image}}">
+        <img class="news-img-left" alt="{{title|default('News image')}}" src="{{image}}">
     </a>
     {% endif %}
     <div class="news-container">
