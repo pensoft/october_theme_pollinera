@@ -43,9 +43,7 @@ description_limit = 0
                                 {% if enable_facebook and facebook_url %}
                                 <a href="{{facebook_url}}" target="_blank" class="pr p-secondary p-facebook normal" target="_blank"></a>
                                 {% endif %}
-                                {% if enable_twitter and twitter_url %}
-                                <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter normal" target="_blank"></a>
-                                {% endif %}
+                                
                                 {% if enable_linkedin and linkedin_url %}
                                 <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank"></a>
                                 {% endif %}
@@ -60,6 +58,9 @@ description_limit = 0
                                 {% endif %}
                                 {% if this.theme.threads_url %}
                                 <a href="{{this.theme.threads_url}}" target="_blank" class="pr p-secondary p-threads small"></a>
+                                {% endif %}
+                                {% if enable_twitter and twitter_url %}
+                                <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter normal" target="_blank"></a>
                                 {% endif %}
                             </div>
                         </div>

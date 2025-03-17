@@ -31,9 +31,7 @@ description_limit = 0
     <div class="search-and-social-media hidden-xs">
         <ul class="navbar-nav">
             <li class="nav-item social">
-                {% if this.theme.twitter_url %}
-                <a href="{{this.theme.twitter_url}}" target="_blank" class="pr p-twitter small"></a>
-                {% endif %}
+                
                 {% if this.theme.facebook_url %}
                 <a href="{{this.theme.facebook_url}}" target="_blank" class="pr p-facebook normal"></a>
                 {% endif %}
@@ -54,6 +52,9 @@ description_limit = 0
                 {% endif %}
                 {% if this.theme.threads_url %}
                 <a href="{{this.theme.threads_url}}" target="_blank" class="pr p-threads small"></a>
+                {% endif %}
+                {% if this.theme.twitter_url %}
+                <a href="{{this.theme.twitter_url}}" target="_blank" class="pr p-twitter small"></a>
                 {% endif %}
                 <a class="pr p-search middle search-btn" onclick="showSearchForm();"></a>
             </li>
