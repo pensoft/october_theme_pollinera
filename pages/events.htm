@@ -185,9 +185,8 @@ $this['slug'] = $this->param('slug');
             <div class="row middle-xs">
                 <div class="col-xs col-md end-md center-xs share_container">
                     <span class="share_label">Share</span>
-                    <a href="http://twitter.com/share?text={{entry.title}}&url={{page_url}}" target="_blank" class="pr p-twitter small"></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" class="pr p-facebook small"></a>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="pr p-linkedin small"></a>
+                    <a href="https://bsky.app/intent/compose?text={{entry.title}}20%{{page_url}}" target="_blank" class="pr p-bluesky small" style="font-size: 16px !important;"></a>
                 </div>
             </div>
 

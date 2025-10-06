@@ -107,7 +107,7 @@ $this['related'] = $related;
         </div>
 		<div class="col-xs-12">
 			{% if article.cover %}
-			<img class="content" src="{{ article.cover|crop_image|resize(673, auto, { mode: 'crop' }) }}" alt="{{ article.title }}" />
+			<img class="content" src="{{ article.cover.getThumb(673, auto, {'mode': 'crop'}) }}" alt="{{ article.title }}" />
 			{% endif %}
 			{% if article.caption %}
                 <div class="caption">{{article.caption|raw}}</div>
@@ -121,9 +121,8 @@ $this['related'] = $related;
             <div class="row middle-xs">
                 <div class="col-xs col-md end-md center-xs share_container">
                     <span class="share_label">Share</span>
-                    <a href="http://twitter.com/share?text={{article.title}}&url={{page_url}}" target="_blank" class="pr p-twitter small"></a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{page_url}}&amp;src=sdkpreparse" target="_blank" class="pr p-facebook small"></a>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="pr p-linkedin small"></a>
+                    <a href="https://bsky.app/intent/compose?text={{article.title}}20%{{page_url}}" target="_blank" class="pr p-bluesky small" style="font-size: 16px !important;"></a>
                 </div>
             </div>
 
