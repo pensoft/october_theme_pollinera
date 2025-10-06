@@ -24,52 +24,63 @@ function onStart(){
 }
 ?>
 ==
-<div class="container mission">
-    <div class="row">
-        <div class="col-md-6 col-xs-12 data-aos">
 
-            {% component 'jumbotron' %}
-            <a href="{{'about'|page}}" class="btn btn-primary">Learn more</a>
-        </div>
-        <div class="col-md-6 col-xs-12">
-            <img src="{{'mission.png'|media}}" alt="PollinERA Mission">
-        </div>
-    </div>
-</div>
-{% if highlights.count %}
-<!-- latest from news -->
-<div class="container-fluid highlights-news bg-secondary">
-    <div class="container">
-        <h1 class="display-1">Latest news</h1>
-    </div>
 
-    <div class="trigger_prev"></div>
-    <div class="trigger_next"></div>
+<main id="main-content" role="main">
+    <section class="container mission" aria-labelledby="mission-heading">
+        <div class="row">
+            <div class="col-md-6 col-xs-12 data-aos">
 
-    <div class="news-carousel">
-        {% for highlight in highlights %}
-        <div class="home-news-highlights">
-            <div class="row news-item">
-                <div class="col-md-4 col-xs-12 home-news-cover">
-                    <a href="/news/{{highlight.slug}}">
-                        <img src="{{ highlight.cover.thumb(auto, 200, {'mode': 'crop'})}}" alt="{{ highlight.title }}">
-                    </a>
-                </div>
-                <div class="col-md-8 col-xs-12 news-content">
-                    <a href="/news/{{highlight.slug}}"><div class="news-title">{{ highlight.title|length > 40 ? highlight.title|slice(0, 40)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlight.title|replace({"&nbsp;": " ", ".": ". "})  }}</div></a>
-                    <p class="news-date">{{ highlight.published_at|date('d M Y') }}</p>
-                    <div class="news-description">{{ highlight.content | raw }}</div>
-                    <div class="row read-more-row">
-                        <a href="/news/{{highlight.slug}}" class="read-more">{{'Read more' |_}}</a>
-                    </div>
-                </div>
+                {% component 'jumbotron' %}
+                <a href="{{'about'|page}}" class="btn btn-primary">Learn more</a>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <img src="{{'mission.png'|media}}" alt="PollinERA Mission - Pollinator research and conservation">
             </div>
         </div>
-        {% endfor %}
-    </div>
-    <div class="container center-xs">
-        <a class="btn btn-primary view_all" href="{{'news'|page}}">View all <i></i></a>
-    </div>
-</div>
+    </section>
+    {% if highlights.count %}
+    <!-- latest from news -->
+    <section class="container-fluid highlights-news bg-secondary" aria-labelledby="latest-news-heading">
+        <div class="container">
+            <h2 id="latest-news-heading" class="display-1">Latest news</h2>
+        </div>
 
-{% endif %}
+        <nav aria-label="News carousel navigation">
+            <a class="trigger_prev" aria-label="Previous news item">
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="trigger_next" aria-label="Next news item">
+                <span class="sr-only">Next</span>
+            </a>
+        </nav>
+
+        <div class="news-carousel" role="region" aria-live="polite" aria-label="News carousel">
+            {% for highlight in highlights %}
+            <article class="home-news-highlights">
+                <div class="row news-item">
+                    <div class="col-md-4 col-xs-12 home-news-cover">
+                        <a href="/news/{{highlight.slug}}" aria-label="Read {{highlight.title}}">
+                            <img src="{{ highlight.cover.thumb(auto, 200, {'mode': 'crop'})}}" alt="{{highlight.title}}">
+                        </a>
+                    </div>
+                    <div class="col-md-8 col-xs-12 news-content">
+                        <a href="/news/{{highlight.slug}}">
+                            <h3 class="news-title">{{ highlight.title|length > 40 ? highlight.title|slice(0, 40)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : highlight.title|replace({"&nbsp;": " ", ".": ". "})  }}</h3>
+                        </a>
+                        <time class="news-date" datetime="{{highlight.published_at|date('Y-m-d')}}">{{ highlight.published_at|date('d M Y') }}</time>
+                        <div class="news-description">{{ highlight.content | raw }}</div>
+                        <div class="row read-more-row">
+                            <a href="/news/{{highlight.slug}}" class="read-more" aria-label="Read more about {{highlight.title}}">{{'Read more' |_}}</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        <div class="container center-xs">
+            <a class="btn btn-primary view_all" href="{{'news'|page}}">View all <i aria-hidden="true"></i></a>
+        </div>
+    </section>
+    {% endif %}
+</main>

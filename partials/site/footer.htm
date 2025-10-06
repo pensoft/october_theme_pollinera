@@ -19,89 +19,111 @@ background = "transperant"
 templates = "template3"
 description_limit = 0
 ==
-<div class="container-fluid border-box dark-background">{% component 'cookieConsent' %}
-    <div class="container">
-        <div class="row top-xs between-xs footer-menu-container">
+<footer role="contentinfo">
+    <div class="container-fluid border-box dark-background">{% component 'cookieConsent' %}
+        <div class="container">
+            <div class="row top-xs between-xs footer-menu-container">
 
-            <div class="col-md-6 col-xs-12 footer-disclaimer-container footer-right-border">
-                {% if (footer_funds_flag != null or footer_funds_text != '') %}
-                <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-sm col-xs-12">
-                    {% if footer_funds_flag %}
-                    <img class="text mr-0 mr-lg-1" style="height:60px;" src="{{ footer_funds_flag }}" alt="Funding Flag"/>
+                <div class="col-md-6 col-xs-12 footer-disclaimer-container">
+                    {% if (footer_funds_flag != null or footer_funds_text != '') %}
+                    <section role="region" aria-label="Funding information">
+                        <div class="funding flex-column my-1 my-lg-0 flex-lg-row px-1 align-items-center col-sm col-xs-12">
+                            {% if footer_funds_flag %}
+                            <img class="text mr-0 mr-lg-1" style="height:60px;" src="{{ footer_funds_flag }}" alt="European Union flag"/>
+                            {% endif %}
+                        </div>
+                        <div class="funding-text">
+                            {% component 'footer_disclimer' %}
+                        </div>
+                    </section>
                     {% endif %}
+                    <div class="row between-xs middle-xs">
+                        <div class="col-sm-4 col-xs-12 start-md center-xs privacy">
+                            <a href="{{'privacy-policy'|page}}">Privacy Policy</a>
+                        </div>
+                        <div class="col-md-8 col-xs-12">
+                            <nav class="social-networks" aria-label="Social media links">
+                                <h2>Follow us</h2>
+                                <div class="icons">
+                                    {% if enable_facebook and facebook_url %}
+                                    <a href="{{facebook_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-facebook normal" aria-label="Follow us on Facebook (opens in new window)">
+                                        <span class="sr-only">Facebook</span>
+                                    </a>
+                                    {% endif %}
+
+                                    {% if enable_linkedin and linkedin_url %}
+                                    <a href="{{linkedin_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-linkedin normal" aria-label="Follow us on LinkedIn (opens in new window)">
+                                        <span class="sr-only">LinkedIn</span>
+                                    </a>
+                                    {% endif %}
+                                    {% if enable_youtube and youtube_url %}
+                                    <a href="{{youtube_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-youtube normal" aria-label="Follow us on YouTube (opens in new window)">
+                                        <span class="sr-only">YouTube</span>
+                                    </a>
+                                    {% endif %}
+                                    {% if enable_instagram and instagram_url %}
+                                    <a href="{{instagram_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-instagram normal" aria-label="Follow us on Instagram (opens in new window)">
+                                        <span class="sr-only">Instagram</span>
+                                    </a>
+                                    {% endif %}
+                                    {% if this.theme.bluesky_url %}
+                                    <a href="{{this.theme.bluesky_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-bluesky small" aria-label="Follow us on Bluesky (opens in new window)">
+                                        <span class="sr-only">Bluesky</span>
+                                    </a>
+                                    {% endif %}
+                                    {% if this.theme.threads_url %}
+                                    <a href="{{this.theme.threads_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-threads small" aria-label="Follow us on Threads (opens in new window)">
+                                        <span class="sr-only">Threads</span>
+                                    </a>
+                                    {% endif %}
+                                    {% if enable_twitter and twitter_url %}
+                                    <a href="{{twitter_url}}" target="_blank" rel="noopener noreferrer" class="pr p-secondary p-twitter normal" aria-label="Follow us on Twitter (opens in new window)">
+                                        <span class="sr-only">Twitter</span>
+                                    </a>
+                                    {% endif %}
+                                </div>
+                            </nav>
+                        </div>
+
+
+                    </div>
                 </div>
-                <div class="funding-text">
-                    {% component 'footer_disclimer' %}
-                </div>
-                {% endif %}
-                <div class="row between-xs middle-xs">
-                    <div class="col-sm-4 col-xs-12 start-md center-xs privacy"><a href="{{'privacy-policy'|page}}">Privacy Policy</a></div>
-                    <div class="col-md-8 col-xs-12">
-                        <div class="social-networks">
-                            Follow us
-                            <div class="icons">
-                                {% if enable_facebook and facebook_url %}
-                                <a href="{{facebook_url}}" target="_blank" class="pr p-secondary p-facebook normal" target="_blank"></a>
-                                {% endif %}
-                                
-                                {% if enable_linkedin and linkedin_url %}
-                                <a  href="{{linkedin_url}}" target="_blank" class="pr p-secondary p-linkedin normal" target="_blank"></a>
-                                {% endif %}
-                                {% if enable_youtube and youtube_url %}
-                                <a  href="{{youtube_url}}" target="_blank" class="pr p-secondary p-youtube normal" target="_blank"></a>
-                                {% endif %}
-                                {% if enable_instagram and instagram_url %}
-                                <a  href="{{instagram_url}}" target="_blank" class="pr p-secondary p-instagram normal" target="_blank"></a>
-                                {% endif %}
-                                {% if this.theme.bluesky_url %}
-                                <a href="{{this.theme.bluesky_url}}" target="_blank" class="pr p-secondary p-bluesky small"></a>
-                                {% endif %}
-                                {% if this.theme.threads_url %}
-                                <a href="{{this.theme.threads_url}}" target="_blank" class="pr p-secondary p-threads small"></a>
-                                {% endif %}
-                                {% if enable_twitter and twitter_url %}
-                                <a href="{{twitter_url}}" target="_blank" class="pr p-secondary p-twitter normal" target="_blank"></a>
-                                {% endif %}
-                            </div>
+
+                <div class="col-md-6 col-xs-12 menu_and_powered footer-left-border">
+                    <div class="row between-md around-xs middle-xs">
+                        <div class="col-md-9 col-xs-12 start-md center-xs subscriber">
+                            {% if this.theme.subscribe %}
+                            <h2>Sign up to our newsletter and stay up to date!</h2>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-3 col-xs-12 end-md center-xs">
+                            {% if this.theme.subscribe %}
+                            <a href="{{this.theme.subscribe}}" target="_blank" rel="noopener noreferrer" class="btn-subscribe" aria-label="Subscribe to newsletter (opens in new window)">Subscribe</a>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <nav class="row between-xs footer_menu" aria-labelledby="footer-links-heading">
+                        <h2 id="footer-links-heading" class="col-xs-12 col-md-12 start-md center-xs">LINKS</h2>
+                        <div class="col-xs-12 col-md-12 start-md center-xs">
+                            {% component 'footer_menu' %}
+                        </div>
+                    </nav>
+                    <div class="row between-xs">
+                        <div class="col-xs-12 powered-by start-md center-xs">
+                            <p>Designed and powered by
+                                <a href="https://pensoft.net/" target="_blank" rel="noopener noreferrer" aria-label="Pensoft website (opens in new window)">
+                                    <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" alt="Pensoft logo" />
+                                </a>
+                            </p>
                         </div>
                     </div>
 
 
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xs-12 menu_and_powered">
-                <div class="row between-md around-xs middle-xs">
-                    <div class="col-md-9 col-xs-12 start-md center-xs">
-                        {% if this.theme.subscribe %}
-                        Sign up to our newsletter and stay up to date!
-                        {% endif %}
-                    </div>
-                    <div class="col-md-3 col-xs-12 end-md center-xs">
-                        {% if this.theme.subscribe %}
-                        <a href="{{this.theme.subscribe}}" target="_blank" class="btn-subscribe">Subscribe</a>
-                        {% endif %}
-                    </div>
 
                 </div>
-                <div class="row between-xs footer_menu">
-                    <div class="col-xs-12 col-md-12 start-md center-xs">LINKS</div>
-                    <div class="col-xs-12 col-md-12 start-md center-xs">
-                        {% component 'footer_menu' %}
-                    </div>
-                </div>
-                <div class="row between-xs">
-                    <div class="col-xs-12 powered-by start-md center-xs">
-                        <span>Designed and powered by <a href="https://pensoft.net/" target="_blank">
-                            <img class="pensoft_logo" src="{{ 'assets/images/pensoft-logo.svg'|theme }}" alt="Pensoft Logo" /></a>
-                        </span>
-                    </div>
-                </div>
-
-
 
             </div>
-
         </div>
     </div>
-</div>
+</footer>

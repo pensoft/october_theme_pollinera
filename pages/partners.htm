@@ -19,29 +19,41 @@ function onStart(){
 ?>
 ==
 <h1 class="underline">Partners</h1>
-<div class="container">
-    {% component 'jumbotron' %}
-    <div class="row container">
-        <div class="row partners_list">
-            {% for k, partner in partners %}
-                <div class="partner-item key_{{k}}" data-aos="fade-up">
+<main id="main-content" role="main">
+    <section class="container" aria-labelledby="partners-heading">
+        {% component 'jumbotron' %}
+        <div class="row container">
+            <div class="row partners_list">
+                {% for k, partner in partners %}
+                <article class="partner-item key_{{k}}" data-aos="fade-up">
                     <div class="row middle-xs logo_and_link">
-                        <div class="col-md-4 col-xs-12 start-md center-xs partner_logo"><a href="{{partner.instituion_url}}" target="_blank">
-                            <img alt="{{ partner.instituion }}" src="{{partner.cover.thumb(auto,120,{'mode':'crop'})}}"></a>
+                        <div class="col-md-4 col-xs-12 start-md center-xs partner_logo">
+                            <a href="{{partner.instituion_url}}" target="_blank" rel="noopener noreferrer" aria-label="Visit {{partner.instituion}} website (opens in new window)">
+                                <img alt="{{partner.instituion}} logo" src="{{partner.cover.thumb(auto,120,{'mode':'crop'})}}">
+                            </a>
                         </div>
                         <div class="col-md-8 col-xs-12 start-md center-xs">
-                            <h4><a href="{{partner.instituion_url}}" target="_blank">{{partner.instituion}}</a></h4>
+                            <h2>
+                                <a href="{{partner.instituion_url}}" target="_blank" rel="noopener noreferrer" aria-label="Visit {{partner.instituion}} website (opens in new window)">{{partner.instituion}}</a>
+                            </h2>
                         </div>
                     </div>
                     <div class="col-xs-12 partner_description">
-                        <div class="partner_content toogle-contact-paragraphs">
+                        <div class="partner_content toogle-contact-paragraphs"
+                             id="partner-content-{{k}}"
+                             role="region"
+                             aria-labelledby="partner-toggle-{{k}}">
                             {{partner.content|raw}}
                         </div>
-                        <a href="javascript:void(0);" class="read_full">Read full description</a>
+                        <a class="read_full"
+                                id="partner-toggle-{{k}}"
+                                aria-expanded="true"
+                                aria-controls="partner-content-{{k}}">Read full description</a>
                     </div>
-                </div>
-            {% endfor %}
+                </article>
+                {% endfor %}
+            </div>
         </div>
-    </div>
 
-</div>
+    </section>
+</main>

@@ -22,22 +22,38 @@ function onStart(){
 ?>
 ==
 {% component 'siteSearchInclude' %}
-<h1 class="underline">Contact</h1>
-<div class="container">
-	<div class="row">
-		{% for profile in profiles %}
-			<div class="col-xs-12 col-md-6 profile-item">
-				<div class="contact_info row">
-					<div class="coordinator_image"><img src="{{profile.avatar.thumb(287, 262, {'mode':'crop'})}}" alt="{{profile.names}}" class="fr-fic fr-dii"></div>
-					<div class="coordinator_info">
-						<h3>{{profile.names}}</h3>
-						{% if profile.position %}<div class="card_title">{{profile.position}}</div>{% endif %}
-						{% if profile.content %}<div class="contact_affiliation">{{profile.content | raw}}</div>{% endif %}
-						{% if profile.email %}<div class="contact_mail"><a href="mailto:{{profile.email}}"><i class="pr p-mail"></i> {{profile.email}}</a></div>{% endif %}
-					</div>
-				</div>
-			</div>
-		{% endfor %}
-	</div>
+<h1 id="contact-heading" class="underline">Contact</h1>
+<main id="main-content" role="main">
+    <section class="container" aria-labelledby="contact-heading">
 
-</div>
+        <div class="row">
+            {% for profile in profiles %}
+            <article class="col-xs-12 col-md-6 profile-item">
+                <div class="contact_info row">
+                    <div class="coordinator_image">
+                        <img src="{{profile.avatar.thumb(287, 262, {'mode':'crop'})}}" alt="{{profile.names}}" class="fr-fic fr-dii">
+                    </div>
+                    <div class="coordinator_info">
+                        <h2>{{profile.names}}</h2>
+                        {% if profile.position %}
+                        <p class="card_title">{{profile.position}}</p>
+                        {% endif %}
+                        {% if profile.content %}
+                        <div class="contact_affiliation">{{profile.content | raw}}</div>
+                        {% endif %}
+                        {% if profile.email %}
+                        <div class="contact_mail">
+                            <a href="mailto:{{profile.email}}" aria-label="Email {{profile.names}}">
+                                <i class="pr p-mail" aria-hidden="true"></i>
+                                <span class="sr-only">Email: </span>{{profile.email}}
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+
+    </section>
+</main>

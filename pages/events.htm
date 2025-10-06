@@ -66,135 +66,171 @@ $this['slug'] = $this->param('slug');
 }
 ?>
 ==
-<h1 class="underline">Events</h1>
-{% if not slug %}
-<div class="container">
-    <div class="events_tabs">
-        <a class="" href="#listView">List view</a>
-        <a class="" href="#calendarView">Calendar view</a>
+<h1 id="events-heading" class="underline">Events</h1>
+<main id="main-content" role="main">
+    {% if not slug %}
+    <section class="container" aria-labelledby="events-heading">
+
+        <nav class="events_tabs" role="tablist" aria-label="Event view options">
+            <a class="tab-link" href="#listView" role="tab" aria-selected="true" aria-controls="listView" id="tab-list">List view</a>
+            <a class="tab-link" href="#calendarView" role="tab" aria-selected="false" aria-controls="calendarView" id="tab-calendar">Calendar view</a>
+        </nav>
+    </section>
+    <!--tabs content	-->
+    <div class="container-fluid">
+        <div class="container">
+
+            <div class="row" id="listView" role="tabpanel" aria-labelledby="tab-list">
+                <section class="events_list_container" aria-labelledby="upcoming-events-heading">
+                    <h2 id="upcoming-events-heading" class="sr-only">Upcoming Events</h2>
+                    {% for entry in entries %}
+                    {% set url = entry.url ?  entry.url : '/events/' ~ entry.slug %}
+
+                    <article class="row entry_item middle-xs">
+                        <div class="col-md-1 col-xs-12 date_container">
+                            <time datetime="{{entry.start|date('Y-m-d')}}">
+                                <span class="date_day">{{entry.start|date("j")}}</span>
+                                <span class="date_month">{{entry.start|date("M")}}</span>
+                                <span class="date_year">{{entry.start|date("Y")}}</span>
+                            </time>
+                        </div>
+
+                        <div class="col-md-9 col-xs-12">
+                            {% if entry.cover_image %}
+                            <a href="{{'events'|page}}/{{entry.slug}}" aria-label="View {{entry.title}} event details">
+                                <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}" alt="{{entry.title}}">
+                            </a>
+                            {% endif %}
+
+                            <a href="{{'events'|page}}/{{entry.slug}}" class="date_week">
+                                <h3>{{entry.title|raw}}</h3>
+                            </a>
+                            <div class="body">{{ entry.description|length > 110 ? entry.description|striptags|slice(0, 110)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : entry.description|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
+
+                        </div>
+                        <div class="col-md-2 col-xs-12 end-md center-xs">
+                            <a href="{{'events'|page}}/{{entry.slug}}" class="read_more" aria-label="Read more about {{entry.title}}">
+                                <span class="sr-only">Read more</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    {% endfor %}
+                </section>
+                {% if entries.count > 20 %}
+                <nav class="row container" aria-label="Pagination">
+                    {{ entries.fragment('listView').render|raw }}
+                </nav>
+                {% endif %}
+
+
+
+                <section class="events_list_container" aria-labelledby="past-events-heading">
+                    <h2 id="past-events-heading">Past events</h2>
+                    {% for entry in past_entries %}
+                    {% set url = entry.url ?  entry.url : '/events/' ~ entry.slug %}
+
+                    <article class="row entry_item middle-xs">
+                        <div class="col-md-1 col-xs-12 date_container">
+                            <time datetime="{{entry.start|date('Y-m-d')}}">
+                                <span class="date_day">{{entry.start|date("j")}}</span>
+                                <span class="date_month">{{entry.start|date("M")}}</span>
+                                <span class="date_year">{{entry.start|date("Y")}}</span>
+                            </time>
+                        </div>
+
+                        <div class="col-md-9 col-xs-12">
+                            {% if entry.cover_image %}
+                            <a href="{{'events'|page}}/{{entry.slug}}" aria-label="View {{entry.title}} event details">
+                                <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}" alt="{{entry.title}}">
+                            </a>
+                            {% endif %}
+
+                            <a href="{{'events'|page}}/{{entry.slug}}" class="date_week">
+                                <h3>{{entry.title|raw}}</h3>
+                            </a>
+                            <div class="body">{{ entry.description|length > 110 ? entry.description|striptags|slice(0, 110)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : entry.description|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
+
+                        </div>
+                        <div class="col-md-2 col-xs-12 end-md center-xs">
+                            <a href="{{'events'|page}}/{{entry.slug}}" class="read_more" aria-label="Read more about {{entry.title}}">
+                                <span class="sr-only">Read more</span>
+                            </a>
+                        </div>
+                    </article>
+
+                    {% endfor %}
+                </section>
+
+            </div>
+            <div class="row" id="calendarView" role="tabpanel" aria-labelledby="tab-calendar" hidden>
+                {% component 'calendar' %}
+            </div>
+
+        </div>
+
     </div>
-</div>
-<!--tabs content	-->
-<div class="container-fluid">
-    <div class="container">
 
-        <div class="row" id="listView">
-            <div class="events_list_container">
-                {% for entry in entries %}
-                {% set url = entry.url ?  entry.url : '/events/' ~ entry.slug %}
 
-                <div class="row entry_item middle-xs">
-                    <div class="col-md-1 col-xs-12 date_container">
-                        <span class="date_day">{{entry.start|date("j")}}</span>
-                        <span class="date_month">{{entry.start|date("M")}}</span>
-                        <span class="date_year">{{entry.start|date("Y")}}</span>
-                    </div>
+    {% else %}
 
-                    <div class="col-md-9 col-xs-12">
-                        {% if entry.cover_image %}
-                        <a href="{{'events'|page}}/{{entry.slug}}">
-                            <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}" alt="{{entry.title}}">
+    {% if entry %}
+    <article class="container event-detail">
+        <div class="row single-news-item">
+            <header class="col-xs-12">
+                <time class="text-published" datetime="{{entry.start|date('Y-m-d')}}">
+                    {% if entry.start|date("j") == entry.end|date("j") %}
+                    {{entry.start|date("j M Y")}}
+                    {% elseif entry.start|date("M") == entry.end|date("M") %}
+                    {{entry.start|date("j")}}-{{entry.end|date("j M Y")}}
+                    {% else %}
+                    {{entry.start|date("d M Y")}} - {{entry.end|date("d M Y")}}
+                    {% endif %}
+                </time>
+                <p class="text-place"><strong>{{entry.place}}</strong></p>
+            </header>
+            <div class="col-xs-12 news-title">
+                <h1 class="single-new-title">{{entry.title}}</h1>
+            </div>
+            <div class="col-xs-12 center-xs">
+                {% if entry.cover_image %}
+                <img class="content mb-2" src="{{ entry.cover_image|crop_image|resize(673, auto, { mode: 'crop' }) }}" alt="{{entry.title}}" />
+                {% endif %}
+                {% if entry.caption %}
+                <figcaption class="caption">{{entry.caption|raw}}</figcaption>
+                {% endif %}
+            </div>
+
+            <div class="col-xs-12">
+                <div class="content">
+                    {{entry.description|raw}}
+                </div>
+                <nav class="row middle-xs" aria-label="Share this event">
+                    <div class="col-xs col-md end-md center-xs share_container">
+                        <span class="share_label">Share</span>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="pr p-linkedin small"
+                           aria-label="Share on LinkedIn (opens in new window)">
+                            <span class="sr-only">LinkedIn</span>
                         </a>
-                        {% endif %}
-
-                        <a href="{{'events'|page}}/{{entry.slug}}" class="date_week">{{entry.title|raw}}</a>
-                        <div class="body">{{ entry.description|length > 110 ? entry.description|striptags|slice(0, 110)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : entry.description|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
-
-                    </div>
-                    <div class="col-md-2 col-xs-12 end-md center-xs">
-                        <a href="{{'events'|page}}/{{entry.slug}}" class="read_more">&nbsp;</a>
-                    </div>
-                </div>
-
-                {% endfor %}
-            </div>
-            {% if entries.count > 20 %}
-            <div class="row container">
-                {{ entries.fragment('listView').render|raw }}
-            </div>
-            {% endif %}
-
-
-
-            <h2>Past events</h2>
-            <div class="events_list_container">
-                {% for entry in past_entries %}
-                {% set url = entry.url ?  entry.url : '/events/' ~ entry.slug %}
-
-                <div class="row entry_item middle-xs">
-                    <div class="col-md-1 col-xs-12 date_container">
-                        <span class="date_day">{{entry.start|date("j")}}</span>
-                        <span class="date_month">{{entry.start|date("M")}}</span>
-                        <span class="date_year">{{entry.start|date("Y")}}</span>
-                    </div>
-
-                    <div class="col-md-9 col-xs-12">
-                        {% if entry.cover_image %}
-                        <a href="{{'events'|page}}/{{entry.slug}}">
-                            <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}" alt="{{entry.title}}">
+                        <a href="https://bsky.app/intent/compose?text={{entry.title}}20%{{page_url}}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="pr p-bluesky small share-bluesky"
+                           aria-label="Share on Bluesky (opens in new window)">
+                            <span class="sr-only">Bluesky</span>
                         </a>
-                        {% endif %}
-
-                        <a href="{{'events'|page}}/{{entry.slug}}" class="date_week">{{entry.title|raw}}</a>
-                        <div class="body">{{ entry.description|length > 110 ? entry.description|striptags|slice(0, 110)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : entry.description|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
-
                     </div>
-                    <div class="col-md-2 col-xs-12 end-md center-xs">
-                        <a href="{{'events'|page}}/{{entry.slug}}" class="read_more">&nbsp;</a>
-                    </div>
-                </div>
+                </nav>
 
-                {% endfor %}
             </div>
 
         </div>
-        <div class="row" id="calendarView">
-            {% component 'calendar' %}
-        </div>
+    </article>
 
-    </div>
+    {% endif %}
 
-</div>
-
-
-{% else %}
-
-{% if entry %}
-<div class="container" style="max-width: 950px;">
-    <div class="row single-news-item">
-        <div class="col-xs-12">
-            <div class="text-published">{% if entry.start|date("j") == entry.end|date("j") %} {{entry.start|date("j M Y")}} {% elseif entry.start|date("M") == entry.end|date("M") %} {{entry.start|date("j")}}-{{entry.end|date("j M Y")}} {% else %} {{entry.start|date("d M Y")}} - {{entry.end|date("d M Y")}}  {% endif %}</div>
-            <div class="text-place">{{entry.place}}</div>
-        </div>
-        <div class="col-xs-12 news-title">
-            <h1 class="single-new-title">{{entry.title}}</h1>
-        </div>
-        <div class="col-xs-12 center-xs">
-            {% if entry.cover_image %}
-            <img class="content mb-2" src="{{ entry.cover_image|crop_image|resize(673, auto, { mode: 'crop' }) }}" alt="{{ entry.title }}" />
-            {% endif %}
-            {% if entry.caption %}
-            <div class="caption">{{entry.caption|raw}}</div>
-            {% endif %}
-        </div>
-
-        <div class="col-xs-12">
-            <div class="content">
-                {{entry.description|raw}}
-            </div>
-            <div class="row middle-xs">
-                <div class="col-xs col-md end-md center-xs share_container">
-                    <span class="share_label">Share</span>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="pr p-linkedin small"></a>
-                    <a href="https://bsky.app/intent/compose?text={{entry.title}}20%{{page_url}}" target="_blank" class="pr p-bluesky small" style="font-size: 16px !important;"></a>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-{% endif %}
-
-{% endif %}
+    {% endif %}
+</main>

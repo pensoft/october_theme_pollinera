@@ -94,84 +94,104 @@ $this['related'] = $related;
 ?>
 ==
 <h1 class="underline">News</h1>
-<div class="container">
+<main id="main-content" role="main">
+    <div class="container">
 
-	{% if is_detail_page %}
-	<div class="row single-news-item">
+        {% if is_detail_page %}
+        <article class="row single-news-item">
 
-        <div class="col-xs-12">
-            <div class="text-published">{{article.published_at|date("j M Y")}}</div>
-        </div>
-        <div class="col-xs-12 news-title">
-            <h1 class="single-new-title">{{article.title}}</h1>
-        </div>
-		<div class="col-xs-12">
-			{% if article.cover %}
-			<img class="content" src="{{ article.cover.getThumb(673, auto, {'mode': 'crop'}) }}" alt="{{ article.title }}" />
-			{% endif %}
-			{% if article.caption %}
-                <div class="caption">{{article.caption|raw}}</div>
-            {% endif %}
-		</div>
+            <div class="col-xs-12">
+                <time class="text-published" datetime="{{article.published_at|date('Y-m-d')}}">{{article.published_at|date("j M Y")}}</time>
+            </div>
+            <header class="col-xs-12 news-title">
+                <h1 class="single-new-title">{{article.title}}</h1>
+            </header>
+            <div class="col-xs-12">
+                {% if article.cover %}
+                <img class="content" src="{{ article.cover.getThumb(673, auto, {'mode': 'crop'}) }}" alt="{{article.title}}" />
+                {% endif %}
+                {% if article.caption %}
+                <figcaption class="caption">{{article.caption|raw}}</figcaption>
+                {% endif %}
+            </div>
 
-		<div class="col-xs-12">
-			<div class="content">
-				{{article.content|raw}}
-			</div>
-            <div class="row middle-xs">
-                <div class="col-xs col-md end-md center-xs share_container">
-                    <span class="share_label">Share</span>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}" target="_blank" class="pr p-linkedin small"></a>
-                    <a href="https://bsky.app/intent/compose?text={{article.title}}20%{{page_url}}" target="_blank" class="pr p-bluesky small" style="font-size: 16px !important;"></a>
+            <div class="col-xs-12">
+                <div class="content">
+                    {{article.content|raw}}
                 </div>
-            </div>
-
-		</div>
-	</div>
-
-    <script async src="https://www.instagram.com/embed.js"></script>
-
-	{% else %}
-
-    <div class="news-list">
-    {% for record in records %}
-    {% spaceless %}
-        <div class="col-md-4 col-xs-12 news-item center-xs center-md">
-            <div class="row news_column">
-                <a href="{{'news'|page}}/{{record.slug}}" style="height: 203px;">
-                    {% if record.cover %}
-                    <div class="news-image col-xs-12 center-xs">
-                        <img class="news-img-top" src="{{record.cover.getThumb(358, 203, {'mode': 'crop'})}}" alt="{{ record.title }}">
+                <nav class="row middle-xs" aria-label="Share this article">
+                    <div class="col-xs col-md end-md center-xs share_container">
+                        <span class="share_label">Share</span>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{page_url}}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="pr p-linkedin small"
+                           aria-label="Share on LinkedIn (opens in new window)">
+                            <span class="sr-only">LinkedIn</span>
+                        </a>
+                        <a href="https://bsky.app/intent/compose?text={{article.title}}20%{{page_url}}"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="pr p-bluesky small share-bluesky"
+                           aria-label="Share on Bluesky (opens in new window)">
+                            <span class="sr-only">Bluesky</span>
+                        </a>
                     </div>
-                    {% endif %}
-                 </a>
-                    <div class="news-container col-xs-12">
-                        <div class="text-published">{{record.published_at|date("j M Y")}}</div>
-                        <div class="news-title">
-                            <!--<h3 class="card-title">{{ record.title|length > 40 ? record.content|striptags|slice(0, 40)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3>-->
-                            <a href="{{'news'|page}}/{{record.slug}}"><h3 class="card-title">{{ record.title|length > 35 ? record.title|striptags|slice(0, 35)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h3></a>
-                        </div>
-                        <div class="body">{{ record.content|length > 90 ? record.content|striptags|slice(0, 90)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
-                        <div class="row read-more-row">
-                            <a class="read-more" href="{{'news'|page}}/{{record.slug}}">{{'Read more' |_}}</a>
-                        </div>
-                    </div>
-
+                </nav>
 
             </div>
+        </article>
 
-        </div>
+        <script async src="https://www.instagram.com/embed.js"></script>
+
+        {% else %}
+
+        <section aria-labelledby="news-heading">
+            <h1 id="news-heading" class="sr-only">News</h1>
+            <div class="news-list">
+                {% for record in records %}
+                {% spaceless %}
+                <article class="col-md-4 col-xs-12 news-item center-xs center-md">
+                    <div class="row news_column">
+                        <a href="{{'news'|page}}/{{record.slug}}" class="news-image-link" aria-label="Read {{record.title}}">
+                            {% if record.cover %}
+                            <div class="news-image col-xs-12 center-xs">
+                                <img class="news-img-top" src="{{record.cover.getThumb(358, 203, {'mode': 'crop'})}}" alt="{{record.title}}">
+                            </div>
+                            {% endif %}
+                        </a>
+                        <div class="news-container col-xs-12">
+                            <time class="text-published" datetime="{{record.published_at|date('Y-m-d')}}">{{record.published_at|date("j M Y")}}</time>
+                            <div class="news-title">
+                                <a href="{{'news'|page}}/{{record.slug}}">
+                                    <h2 class="card-title">{{ record.title|length > 35 ? record.title|striptags|slice(0, 35)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h2>
+                                </a>
+                            </div>
+                            <div class="body">{{ record.content|length > 90 ? record.content|striptags|slice(0, 90)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>
+                            <div class="row read-more-row">
+                                <a class="read-more" href="{{'news'|page}}/{{record.slug}}" aria-label="Read more about {{record.title}}">{{'Read more' |_}}</a>
+                            </div>
+                        </div>
 
 
-    {% endspaceless %}
-    {% else %}
-    No news
-    {% endfor %}
+                    </div>
+
+                </article>
+
+
+                {% endspaceless %}
+                {% else %}
+                <div class="col-xs-12 text-center" role="status">
+                    <p>No news</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <nav class="row container" aria-label="Pagination">
+                {{ records.render|raw }}
+            </nav>
+        </section>
+
+        {% endif %}
     </div>
-
-    <div class="row container">
-        {{ records.render|raw }}
-    </div>
-
-	{% endif %}
-</div>
+</main>
