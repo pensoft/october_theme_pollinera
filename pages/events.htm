@@ -98,7 +98,7 @@ $this['slug'] = $this->param('slug');
                         <div class="col-md-9 col-xs-12">
                             {% if entry.cover_image %}
                             <a href="{{'events'|page}}/{{entry.slug}}" aria-label="View {{entry.title}} event details">
-                                <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}" alt="{{entry.title}}">
+                                <img src="{{entry.cover_image.getThumb(174, 120, {'mode': 'crop'})}}" alt="{{entry.title}}">
                             </a>
                             {% endif %}
 
@@ -142,7 +142,7 @@ $this['slug'] = $this->param('slug');
                         <div class="col-md-9 col-xs-12">
                             {% if entry.cover_image %}
                             <a href="{{'events'|page}}/{{entry.slug}}" aria-label="View {{entry.title}} event details">
-                                <img src="{{entry.cover_image.getThumb(auto, auto, {'mode': 'crop'})}}" alt="{{entry.title}}">
+                                <img src="{{entry.cover_image.getThumb(174, 120, {'mode': 'crop'})}}" alt="{{entry.title}}">
                             </a>
                             {% endif %}
 
