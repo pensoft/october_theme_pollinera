@@ -42,8 +42,25 @@ title = 1
 background = "transperant"
 templates = "template3"
 description_limit = 0
+
 ==
+<?php
+use Pensoft\Media\Models\Videos;
+use Pensoft\Media\Models\VideosCategory;
+
+function onStart() {
+    $category = VideosCategory::where('name', 'About')->first();
+    if ($category) {
+        $this['aboutVideos'] = Videos::where('category_id', $category->id)->limit(12)->get();
+    } else {
+        $this['aboutVideos'] = collect([]);
+    }
+}
+?>
+==
+
 {% component 'siteSearchInclude' %}
+
 <h1 class="underline">About</h1>
 <section class="container background" data-aos="fade-up">
    {% component 'background' %}
@@ -62,3 +79,42 @@ description_limit = 0
 <section class="container actions">
    {% component 'actions' %}
 </section>
+
+{% if aboutVideos is not empty %}
+<section class="container about-videos-section" data-aos="fade-up">
+    <h2 class="underline">Videos</h2>
+    <div class="about-videos-carousel">
+        {% for video in aboutVideos %}
+            <div class="about-video-item">
+                <div class="about-video-wrapper">
+                    {% if video.youtube_url %}
+                        <iframe
+                            src="{{ video.youtube_url }}"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen
+                            title="{{ video.name }}"
+                            aria-label="YouTube video: {{ video.name }}">
+                        </iframe>
+                    {% elseif video.vimeo_url %}
+                        <iframe
+                            src="{{ video.vimeo_url }}"
+                            frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowfullscreen
+                            title="{{ video.name }}"
+                            aria-label="Vimeo video: {{ video.name }}">
+                        </iframe>
+                    {% elseif video.file %}
+                        <video controls title="{{ video.name }}" aria-label="Video: {{ video.name }}">
+                            <source src="{{ video.file.path }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
+                </div>
+                <p class="about-video-title">{{ video.name }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
