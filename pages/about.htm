@@ -51,7 +51,7 @@ use Pensoft\Media\Models\VideosCategory;
 function onStart() {
     $category = VideosCategory::where('name', 'About')->first();
     if ($category) {
-        $this['aboutVideos'] = Videos::where('category_id', $category->id)->limit(12)->get();
+        $this['aboutVideos'] = Videos::where('category_id', $category->id)->limit(20)->get();
     } else {
         $this['aboutVideos'] = collect([]);
     }
