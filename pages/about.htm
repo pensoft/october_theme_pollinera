@@ -68,21 +68,9 @@ function onStart() {
 <section class="container vision" data-aos="fade-up">
    {% component 'vision' %}
 </section>
-<section class="container-fluid bg-approach">
-    <div class="container approach" data-aos="fade-up">
-       {% component 'approach' %}
-    </div>
-</section>
-<section class="container specific_actions" data-aos="fade-up">
-   {% component 'specific_actions' %}
-</section>
-<section class="container actions">
-   {% component 'actions' %}
-</section>
-
 {% if aboutVideos is not empty %}
 <section class="container about-videos-section" data-aos="fade-up">
-    <h2 class="underline">Videos</h2>
+    <h1 class="display-1">POLLINERA IN DEPTH</h1>
     <div class="about-videos-carousel">
         {% for video in aboutVideos %}
             <div class="about-video-item">
@@ -116,5 +104,17 @@ function onStart() {
             </div>
         {% endfor %}
     </div>
+    <p class="about-videos-hashtag">#PollinERAexplained</p>
 </section>
 {% endif %}
+<section class="container-fluid bg-approach">
+    <div class="container approach" data-aos="fade-up">
+       {% component 'approach' %}
+    </div>
+</section>
+<section class="container specific_actions" data-aos="fade-up">
+   {% component 'specific_actions' %}
+</section>
+<section class="container actions">
+   {% component 'actions' %}
+</section>
