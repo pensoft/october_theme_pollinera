@@ -72,11 +72,32 @@ nav:not(.navbar){
     }
 
 
+
+
         .content{
             color: #8A8A8A;
             .breakpoint-small-down({
                 margin-left: 0px;
             });
+
+            a{
+                strong{
+                    color: @black-color;
+                    background-color: @button-background-color;
+                    border-color: @button-background-color;
+                    .rounded(15px);
+                    padding-left: 25px;
+                    padding-right: 25px;
+                    padding-top: 10px;
+                    padding-bottom: 10px;
+
+                    &:hover, &.active {
+                        color: @white-color;
+                        background-color: @black-color;
+                        border-color: @black-color;
+                    }
+                }
+            }
         }
 
         .single-new-title{

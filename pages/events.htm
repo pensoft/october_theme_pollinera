@@ -204,7 +204,12 @@ $this['slug'] = $this->param('slug');
             <div class="col-xs-12">
                 <div class="content">
                     {{entry.description|raw}}
+
+                    {% if entry.url %}
+                    <a href="{{entry.url}}" target="_blank" class="btn btn-primary">Go to event website</a>
+                    {% endif %}
                 </div>
+
                 <nav class="row middle-xs" aria-label="Share this event">
                     <div class="col-xs col-md end-md center-xs share_container">
                         <span class="share_label">Share</span>
