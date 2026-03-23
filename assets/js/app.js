@@ -383,10 +383,11 @@ $(document).ready(function() {
             $active.addClass('active');
         }
 
-        // ↓ ADD THIS
+        console.log($active);
         if($(this).parent().parent().hasClass('knowledge-sharing-events')){
             $active.addClass('active');
         }
+
 
         $content = $($active[0].hash);
 
