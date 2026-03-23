@@ -445,6 +445,17 @@ $(document).ready(function() {
 
 });
 
+function expandBiography(el){
+    $el = $(el) // read-more link
+    $body  = $el.parent().parent().find('.body');
+    if($body.is(':visible')){
+        $body.slideUp(300);
+        $el.addClass('expanded');
+    }else{
+        $body.slideDown(300);
+        $el.removeClass('expanded');
+    }
+}
 
 function expandReadMore(el){
     var $el, $ps, $up, totalHeight;
