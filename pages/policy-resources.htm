@@ -20,28 +20,24 @@ function onStart(){
 ==
 {% component 'siteSearchInclude' %}
 <h1 class="underline" id="policy-page-title">Policy resources</h1>
-<div class="container">
-    {% component 'database_jumbotron' %}
-
-    <div class="policy-resources">
-        <div class="container">
-            <div class="row center-xs">
-                {% for database in databases %}
-                <div class="col-md-6 col-xs-12">
-                    <div class="database-item">
-                        <div class="database-content">
-                            <div class="database-year">{{ database.date|date('Y') }}</div>
-                            <div class="database-title">{{ database.title }}</div>
-                            <div class="database-description">
-                                {{ database.description|raw }}
-                                <a href="{{ database.url }}" class="read_more" target="_blank">{{ 'Read more'|_ }}</a>
-                            </div>
+{% component 'database_jumbotron' %}
+<div class="policy-resources">
+    <div class="container">
+        <div class="row center-xs">
+            {% for database in databases %}
+            <div class="col-md-6 col-xs-12">
+                <div class="database-item">
+                    <div class="database-content">
+                        <div class="database-year">{{ database.date|date('Y') }}</div>
+                        <div class="database-title">{{ database.title }}</div>
+                        <div class="database-description">
+                            {{ database.description|raw }}
+                            <a href="{{ database.url }}" class="read_more" target="_blank">{{ 'Read more'|_ }}</a>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
     </div>
-
 </div>
