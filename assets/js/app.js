@@ -154,7 +154,7 @@ $(document).ready(function() {
 
 	var count = $("h1").text().length;
 
-	$('.subscribe-items a').attr('data-aos', 'fade-up');
+	// $('.subscribe-items a').attr('data-aos', 'fade-up');
 	// $('.icons a').attr('data-aos', 'fade-up');
 	$('.about h1.display-1').attr('data-aos', 'fade-up');
 	$('h2.underline').attr('data-aos', 'fade-up');

@@ -43,7 +43,7 @@
         }
 
         .partners_list_content{
-            height: 50vh;
+            max-height: 50vh;
             overflow-y: auto;
             padding-right: 20px;
 
@@ -265,6 +265,9 @@
     width: auto;
     margin: 10px;
 
+    scrollbar-width: thin;
+    scrollbar-color: #888 transparent;
+
     .breakpoint-large-down({
         margin: 20vh 20px;
     });
@@ -293,7 +296,8 @@
     bottom: 0;
     left: 0;
     z-index: 500;
-    background-color: rgba(0, 0, 0, 0.38)
+    //background-color: rgba(0, 0, 0, 0.38)
+    background-color: #C4C4C4C4;
 
 }
 
@@ -344,6 +348,301 @@
         width: auto;
         padding: 5px 0;
         margin: 0
+    }
+}
+
+
+
+.synergies{
+
+    .modal-body{
+        padding: 25px 34px;
+        max-height: 70vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .close{
+        top: 18px;
+        svg{
+            width: 21px;
+            height: 21px;
+        }
+    }
+
+    .synergy_item{
+
+        a{
+            height: 198px;
+            /* UI Properties */
+            background: #FFFFFF;
+            border-radius: 20px;
+            display: block;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            margin-bottom: 50px;
+            position: relative;
+            color: white!important;
+            font-size: 16px;
+            font-weight: 500;
+            box-shadow: 0px 0px 10px #8BA8BA42;
+
+            .synergy-image{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 70%;
+                //padding: 50px;
+                img{
+                    width: auto;
+                    max-width: 65%;
+                }
+            }
+
+
+            .synergy-container{
+                position: absolute;
+                width: 100%;
+                height: 60px;
+                border-bottom-right-radius: 20px;
+                border-bottom-left-radius: 20px;
+                display: flex;
+                align-items: center;
+                bottom: 0;
+                left: 0;
+                font-size: 18px;
+                font-weight: 400;
+                color: black;
+                background: #E4CB1E url("../../assets/images/Icon-arrow-news.svg") center no-repeat;
+                background-position: right 20px center;
+                transition: all 0.3s ease-in-out;
+                &:hover{
+                    background: #E4CB1E url("../../assets/images/Icon-arrow-news.svg") center no-repeat;
+                    background-position: right 15px center;
+                }
+
+
+                .learn-more-text{
+                    padding-left: 17px;
+                }
+
+            }
+        }
+
+    }
+    .modal-content{
+        img{
+            width: auto;
+            max-height: 90px;
+            max-width: 100%;
+            .breakpoint-large-down({
+                margin-bottom: 20px;
+            });
+        }
+
+
+        ul{
+            padding-left: 0!important;
+        }
+
+        .social-media-list{
+            li{
+                margin: 0 0;
+            }
+        }
+
+        .pr.p-primary{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 38px;
+            width: 38px;
+            height: 38px;
+            margin: 8px 8px 8px 0;
+            font-size: 1em;
+            background-color: #E4CB1E!important;
+            border-radius: 10px;
+
+            &:hover{
+                box-shadow: none;
+                opacity: 0.7;
+            }
+            &.p-newsletter{
+                width: fit-content;
+                font-size: 20px!important;
+            }
+        }
+
+        .related_news{
+            font-weight: bold;
+            text-decoration: underline;
+            margin: 4px 0 0 0;
+            display: block;
+        }
+
+        .related-news-list{
+            display: block;
+            margin: 0 0px;
+            li{
+                padding: 0;
+                margin: 0;
+                a{
+                    font: normal normal 300 18px/27px Poppins;
+                    letter-spacing: 0px;
+                    color: #5F5F5F;
+                    margin-bottom: 28px
+                }
+            }
+        }
+
+
+
+        h3{
+            margin-bottom: 9px;
+            text-align: left;
+            margin-top: 20px;
+            font: normal normal 600 18px/27px Poppins;
+            letter-spacing: 0px;
+            color: #383838!important;
+        }
+
+    .project_website{
+        width: 150px;
+        max-width: 100%;
+        height: 45px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        padding-left: 30px;
+        font-size: 16px;
+        color: white;
+        background: black url("../../assets/images/arrow.svg") center no-repeat;
+        background-position: right 20px center;
+        transition: all 0.3s ease-in-out;
+        float: right;
+        &:hover{
+            background: @yellow-color url("../../assets/images/arrow.svg") center no-repeat;
+            background-position: right 15px center;
+            color: black;
+        }
+
+        .breakpoint-large-down({
+            padding-left: 10px!important;
+            margin-bottom: 20px;
+            float: unset;
+        });
+    }
+
+        // ─── Bell ring keyframes ────────────────────────────────────────
+        @keyframes bell-ring {
+            0%   { transform: rotate(0deg); }
+            5%   { transform: rotate(18deg); }
+            15%  { transform: rotate(-16deg); }
+            25%  { transform: rotate(14deg); }
+            35%  { transform: rotate(-12deg); }
+            45%  { transform: rotate(8deg); }
+            55%  { transform: rotate(-5deg); }
+            65%  { transform: rotate(3deg); }
+            75%  { transform: rotate(-1deg); }
+            85%  { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes clapper-swing {
+            0%, 85%, 100% { transform: translateX(0); }
+            5%   { transform: translateX(3px); }
+            15%  { transform: translateX(-3px); }
+            25%  { transform: translateX(2.5px); }
+            35%  { transform: translateX(-2px); }
+            45%  { transform: translateX(1.5px); }
+            55%  { transform: translateX(-1px); }
+            65%  { transform: translateX(.5px); }
+        }
+
+        // ─── Mixin ──────────────────────────────────────────────────────
+        .bell-ring-animation(@duration: 1s) {
+            animation: bell-ring @duration ease-in-out;
+            transform-origin: top center;
+        }
+
+        // ─── Newsletter section ─────────────────────────────────────────
+        .newsletter-section {
+            border-top: 1px solid #DEDEDE;
+            padding-top: 22px;
+            margin-top: 37px;
+            display: flex;
+
+            a {
+                background: #E4CB1E;
+                border-radius: 15px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+
+                &:hover {
+                    border: 1px solid #E4CB1E;
+                    opacity: 0.7;
+                    color: black;
+
+                    // Trigger bell animation on hover
+                    .bell-icon {
+                        .bell-ring-animation(1s);
+                    }
+                    .bell-icon__clapper {
+                        animation: clapper-swing 1s ease-in-out;
+                    }
+                }
+            }
+
+            // Bell wrapper — pivot point is top-center (the handle)
+            .bell-icon {
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                transform-origin: top center;
+                line-height: 1;
+            }
+
+            .bell-icon__clapper {
+                width: 5px;
+                height: 5px;
+                background: currentColor;
+                border-radius: 50%;
+                margin-top: -1px;
+            }
+        }
+
+        .description-content{
+            margin-top: 20px;
+            a{
+                font: normal normal 300 18px/27px Poppins;
+                letter-spacing: 0px;
+                color: #5F5F5F;
+                margin-bottom: 28px;
+                text-decoration: underline;
+            }
+        }
+}
+
+
+.read_more{
+    font-weight: 500;
+    color: @date-text-color;
+    font-size: 14px;
+}
+
+//.container:not(.main_container){
+//    padding: 0 20px 50px 20px !important;
+//}
+
+    .logo_and_btn{
+        width: 100%;
+        //padding: 0 0 20px 0;
+        border-bottom: 1px solid #DEDEDE;
     }
 }
 
