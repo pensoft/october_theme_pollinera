@@ -379,22 +379,29 @@
         }
     }
 
-    // ============================================
-    // Database Items - Card Grid with Hover Expand
-    // ============================================
+    // 2-column layout — cards are wider than the 3-col grid
+    .col-md-6 {
+        .database-item {
+            width: 100%;
+            max-width: 100%;
+            height: 370px;
 
-    // Custom backgrounds per item (nth-child)
-    .col-md-4 {
-        &:nth-child(1) .database-item { background-image: url('../images/database-bg-8.png'); }
-        &:nth-child(2) .database-item { background-image: url('../images/database-bg-6.png'); }
-        &:nth-child(3) .database-item { background-image: url('../images/database-bg-7.png'); }
-        &:nth-child(4) .database-item { background-image: url('../images/database-bg-9.png'); }
-        &:nth-child(5) .database-item { background-image: url('../images/database-bg-4.png'); }
-        &:nth-child(6) .database-item { background-image: url('../images/database-bg-5.png'); }
-        &:nth-child(7) .database-item { background-image: url('../images/database-bg-10.png'); }
-        &:nth-child(8) .database-item { background-image: url('../images/database-bg-3.png'); }
-        &:nth-child(9) .database-item { background-image: url('../images/database-bg-1.png'); }
-        &:nth-child(10) .database-item { background-image: url('../images/database-bg-2.png'); }
+            .database-description {
+                transform: translateY(370px);
+            }
+
+            &:hover {
+                .database-description {
+                    transform: translateY(0);
+                }
+            }
+        }
+    }
+
+    // Per-item background images
+    .col-md-6 {
+        &:nth-child(1) .database-item { background-image: url('../images/resources1.png'); }
+        &:nth-child(2) .database-item { background-image: url('../images/resources2.png'); }
     }
 
 

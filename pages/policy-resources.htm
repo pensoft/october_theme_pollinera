@@ -14,7 +14,7 @@ description_limit = 0
 use Pensoft\Workshops\Models\Workshop;
 
 function onStart(){
-    $this['databases'] = Workshop::where('place', 'ilike', '%Database%')->orderBy('date', 'desc')->get();
+    $this['databases'] = Workshop::where('place', 'ilike', '%policy%')->orderBy('date', 'desc')->get();
 }
 ?>
 ==
@@ -23,19 +23,25 @@ function onStart(){
 <div class="container">
     {% component 'database_jumbotron' %}
 
-    <div class="row center-xs">
-        {% for database in databases %}
-        <div class="col-md-4 col-xs-12">
-            <div class="database-item">
-                <div class="database-content">
-                    <div class="database-title">{{ database.title }}</div>
-                    <div class="database-description">
-                        {{database.description|raw}}
-                        <a href="{{database.url}}" class="btn btn-primary" target="_blank">{{'Access' |_}}</a>
+    <div class="policy-resources">
+        <div class="container">
+            <div class="row center-xs">
+                {% for database in databases %}
+                <div class="col-md-6 col-xs-12">
+                    <div class="database-item">
+                        <div class="database-content">
+                            <div class="database-year">{{ database.date|date('Y') }}</div>
+                            <div class="database-title">{{ database.title }}</div>
+                            <div class="database-description">
+                                {{ database.description|raw }}
+                                <a href="{{ database.url }}" class="read_more" target="_blank">{{ 'Read more'|_ }}</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
     </div>
+
 </div>
