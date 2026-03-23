@@ -1,0 +1,99 @@
+url = "/knowledge-sharing-events"
+layout = "default"
+title = "Knowledge-sharing events"
+
+[siteSearchInclude]
+
+[jumbotron policy]
+jumbotron = "knowledge-sharing-events"
+background = "transperant"
+templates = "template3"
+description_limit = 0
+==
+<?php
+use Pensoft\Workshops\Models\Workshop;
+
+function onStart(){
+    $this['webinars'] = Workshop::where('place', 'ilike', '%webinar%')->orderBy('date', 'desc')->get();
+    $this['workshops'] = Workshop::where('place', 'ilike', '%workshop%')->orderBy('date', 'desc')->get();
+    $this['trainings'] = Workshop::where('place', 'ilike', '%training%')->orderBy('date', 'desc')->get();
+}
+?>
+==
+{% component 'siteSearchInclude' %}
+
+
+
+
+<h1 class="underline" id="knowledge-page-title">Knowledge-sharing events</h1>
+
+{% component 'policy' %}
+
+<div class="knowledge-sharing-events">
+    <div class="container text-center">
+
+        <div class="events_tabs">
+            <a href="#webinars">Webinar</a>
+            <a href="#workshops">Workshops</a>
+            <a href="#trainings">Training sessions</a>
+        </div>
+
+        <div id="webinars" class="ks-panel webinars">
+            <div class="row center-xs">
+                {% for pb in webinars %}
+                <div class="col-md-4 col-xs-12">
+                    <div class="database-item">
+                        <div class="database-content">
+                            <div class="database-year">{{ pb.date|date('Y') }}</div>
+                            <div class="database-title">{{ pb.title }}</div>
+                            <div class="database-description">
+                                {{ pb.description|raw }}
+                                <a href="{{ pb.url }}" class="read_more" target="_blank">{{ 'Read more'|_ }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="workshops" class="ks-panel workshops">
+            <div class="row center-xs">
+                {% for pb in workshops %}
+                <div class="col-md-4 col-xs-12">
+                    <div class="database-item">
+                        <div class="database-content">
+                            <div class="database-year">{{ pb.date|date('Y') }}</div>
+                            <div class="database-title">{{ pb.title }}</div>
+                            <div class="database-description">
+                                {{ pb.description|raw }}
+                                <a href="{{ pb.url }}" class="read_more" target="_blank">{{ 'Read more'|_ }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="trainings" class="ks-panel trainings">
+            <div class="row center-xs">
+                {% for pb in trainings %}
+                <div class="col-md-4 col-xs-12">
+                    <div class="database-item">
+                        <div class="database-content">
+                            <div class="database-year">{{ pb.date|date('Y') }}</div>
+                            <div class="database-title">{{ pb.title }}</div>
+                            <div class="database-description">
+                                {{ pb.description|raw }}
+                                <a href="{{ pb.url }}" class="read_more" target="_blank">{{ 'Read more'|_ }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>

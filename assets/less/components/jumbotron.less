@@ -368,3 +368,296 @@
     }
 }
 
+
+
+
+.policy-resources, .knowledge-sharing-events{
+
+    .container-fluid.banner{
+        .container{
+            padding-bottom: 0;
+        }
+    }
+
+    // ============================================
+    // Database Items - Card Grid with Hover Expand
+    // ============================================
+
+    // Custom backgrounds per item (nth-child)
+    .col-md-4 {
+        &:nth-child(1) .database-item { background-image: url('../images/database-bg-8.png'); }
+        &:nth-child(2) .database-item { background-image: url('../images/database-bg-6.png'); }
+        &:nth-child(3) .database-item { background-image: url('../images/database-bg-7.png'); }
+        &:nth-child(4) .database-item { background-image: url('../images/database-bg-9.png'); }
+        &:nth-child(5) .database-item { background-image: url('../images/database-bg-4.png'); }
+        &:nth-child(6) .database-item { background-image: url('../images/database-bg-5.png'); }
+        &:nth-child(7) .database-item { background-image: url('../images/database-bg-10.png'); }
+        &:nth-child(8) .database-item { background-image: url('../images/database-bg-3.png'); }
+        &:nth-child(9) .database-item { background-image: url('../images/database-bg-1.png'); }
+        &:nth-child(10) .database-item { background-image: url('../images/database-bg-2.png'); }
+    }
+
+
+    // ============================================
+    // Card Base
+    // ============================================
+    .database-item {
+        position: relative;
+        width: 468px;
+        max-width: 100%; //380
+        height: 324px;
+        border-radius: 20px;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        //cursor: pointer;
+        margin-bottom: 20px;
+        font-family: Muli;
+
+        // Gradient overlay on background image
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #4B430AB0;
+            //background: transparent linear-gradient(360deg, #0EC8BC 0%, #00332F 100%) 0% 0% no-repeat padding-box;
+            border-radius: 10px;
+        }
+
+        // ============================================
+        // Content Wrapper (overlay that expands)
+        // ============================================
+        .database-content {
+            position: relative;
+            padding: 26px 26px;
+            //background: rgba(0, 150, 136, 0.88);
+            //max-height: 80px;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            padding 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            height: calc(~'100% - 52px');
+            width: calc(~'100% - 52px');
+
+        }
+
+        // ============================================
+        // Title – hidden on hover
+        // ============================================
+        .database-title {
+            position: absolute;
+            bottom: 26px;
+            //left: 0;
+            //right: 0;
+            z-index: 2;
+            max-height: fit-content;
+            color: #fff;
+
+            line-height: 1.5;
+            margin-bottom: 0;
+            text-align: left;
+            opacity: 1;
+            //max-height: 60px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+            max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+            margin-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: calc(~'100% - 52px');
+
+            font: normal normal medium 22px/30px Poppins;
+            font-weight: 400;
+            letter-spacing: 0px;
+
+        }
+
+        .database-year {
+            position: absolute;
+            top: 26px;
+            left: 26px;
+            //right: 0;
+            z-index: 2;
+            max-height: fit-content;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 0;
+            text-align: left;
+            opacity: 1;
+            //max-height: 60px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+            max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+            margin-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            max-width: calc(~'100% - 52px');
+
+            font: normal normal normal 16px/20px Poppins;
+            font-weight: 300;
+
+        }
+
+        // ============================================
+        // Description (hidden by default via parent overflow)
+        // ============================================
+        .database-description {
+            position: absolute;
+            //bottom: 0;
+            //left: 0;
+            //right: 0;
+            z-index: 3;
+
+            color: rgba(255, 255, 255, 0.92);
+            font: normal normal normal 16px/20px Poppins;
+            font-weight: 300;
+            text-align: left;
+            opacity: 0;
+            transform: translateY(324px);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+            transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+            height: calc(~'100% - 52px');
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            max-width: calc(~'100% - 52px');
+
+            .read_more{
+                margin-bottom: 0;
+                color: white;
+                display: flex;
+                justify-content: start;
+                position: relative;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: 27px;
+                letter-spacing: 0px;
+                cursor: pointer;
+                width: fit-content;
+                padding-right: 20px;
+                left: 0;
+
+                &:hover{
+                    opacity: 0.7;
+                }
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    margin-top: -5px;
+                    width: 13px;
+                    height: 13px;
+                    background: url('../../assets/images/Icon-arrow-white.svg') no-repeat center center;
+                    background-size: contain;
+                    pointer-events: none;
+                    transition: transform 0.3s ease;
+                }
+            }
+
+        }
+
+        &:hover{
+
+            .database-content{
+                max-height: 324px;
+                //padding: 30px 28px;
+            }
+
+            .database-title{
+                opacity: 0;
+                visibility: hidden;
+            }
+            .database-year{
+                opacity: 0;
+                visibility: hidden;
+            }
+            .database-description{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    }
+}
+
+
+.knowledge-sharing-events {
+
+    // ── Tab Navigation ──────────────────────────────
+    .events_tabs {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 40px 0;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        border-bottom: none;
+
+        a {
+            font-size: 16px;
+            font-weight: 400;
+            color: #4E4E4E;
+            cursor: pointer;
+            padding-bottom: 8px;
+            position: relative;
+            border-bottom: 2px solid transparent;
+            transition: font-weight 0.2s, color 0.2s;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                right: 0;
+                height: 2px;
+                background: @yellow-color;
+                opacity: 0;
+                transition: opacity 0.2s;
+            }
+
+            &.active {
+                font-weight: 700;
+                color: #0F0F0F;
+
+                &::after {
+                    opacity: 1;
+                }
+            }
+
+            &:hover:not(.active) {
+                color: #0F0F0F;
+            }
+        }
+    }
+
+
+
+    // ── Tab Panels ──────────────────────────────────
+    .ks-panel {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    // ── Background images per panel ─────────────────
+    .webinars .col-md-4 {
+        &:nth-child(1) .database-item { background-image: url('../images/webinar1.png'); }
+        &:nth-child(2) .database-item { background-image: url('../images/webinar2.png'); }
+        &:nth-child(3) .database-item { background-image: url('../images/webinar3.png'); }
+    }
+
+    .workshops .col-md-4 {
+        &:nth-child(1) .database-item { background-image: url('../images/workshops1.png'); }
+        &:nth-child(2) .database-item { background-image: url('../images/workshops1.png'); }
+        &:nth-child(3) .database-item { background-image: url('../images/workshops1.png'); }
+    }
+
+    .trainings .col-md-4 {
+        &:nth-child(1) .database-item { background-image: url('../images/trainings1.png'); }
+        &:nth-child(2) .database-item { background-image: url('../images/trainings1.png'); }
+        &:nth-child(3) .database-item { background-image: url('../images/trainings1.png'); }
+    }
+}
+
