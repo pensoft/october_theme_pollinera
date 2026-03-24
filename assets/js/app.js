@@ -474,14 +474,16 @@ function expandBiography(el) {
         return;
     }
 
-    // ── Biography toggle (existing behaviour) ───────
-    var $body = $el.parent().parent().find('.body');
+    // ── Biography toggle ────────────────────────────
+    // Use .closest('.contact_info') instead of .parent().parent()
+    // so it only finds the .body inside THIS member row, not all of them
+    var $body = $el.closest('.contact_info').find('.body');
     if ($body.is(':visible')) {
         $body.slideUp(300);
-        $el.addClass('expanded');
+        $el.removeClass('expanded');
     } else {
         $body.slideDown(300);
-        $el.removeClass('expanded');
+        $el.addClass('expanded');
     }
 }
 
