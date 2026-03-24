@@ -88,22 +88,17 @@ function onStart(){
                             <div class="row middle-md around-xs logo_and_btn">
                                 <div class="col-md col-xs-12 project-logo-container">
                                     {% if record.logo %}
+                                    <a href="{{record.url}}"
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       aria-describedby="website-{{record.id}}-desc">
                                     <img class="project-logo"
                                          src="{{record.logo.getThumb(auto, 100, {'mode': 'crop'})}}"
                                          alt="Logo for {{ record.name }} project"
                                          role="img">
-                                    {% endif %}
-                                </div>
-                                <div class="col-md col-xs-12 project-website-container">
-                                    {% if record.url %}
-                                    <a href="{{record.url}}"
-                                       class="project_website"
-                                       target="_blank"
-                                       rel="noopener noreferrer"
-                                       aria-describedby="website-{{record.id}}-desc">
-                                        Project website
                                         <span class="sr-only">Visit {{ record.name }} website
                                     (opens in new window)</span>
+
                                     </a>
                                     <span id="website-{{record.id}}-desc" class="sr-only">
                                         Opens the official website for {{ record.name }} project in a new window
