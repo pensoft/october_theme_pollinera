@@ -69,7 +69,7 @@ function onSinglePartner(){
                                href="#partner{{k}}"
                                class="read_more"
                                aria-label="Read more about {{partner.instituion}}"
-                               role="button">{{'Team members'|_}}</a>
+                               role="button">{{'Read more'|_}}</a>
                         </div>
                     </article>
                 </div>
@@ -97,56 +97,68 @@ function onSinglePartner(){
                                            target="_blank"
                                            rel="noopener noreferrer"
                                            aria-label="Visit {{partner.instituion}} website (opens in new window)">
-
                                             <img src="{{partner.cover.path}}"
                                              title="{{partner.instituion}}"
                                              alt="{{partner.instituion}} logo">
                                         </a>
+                                        <h3>{{partner.instituion}}</h3>
                                     </div>
-                                    {% if insider_members.getIM(partner.id).count > 0 %}
+
+
                                     <section role="region" aria-labelledby="members-heading-{{k}}">
                                         <div class="partners_list_content">
-                                            {% for profile in insider_members.getIM(partner.id) %}
-                                            <article class="contact_info row" role="article" aria-labelledby="member-name-{{k}}-{{loop.index}}">
-                                                <div class="col-md-2 col-xs-12 coordinator_image">
-                                                    {% if profile.avatar %}
-                                                    <img alt="Photo of {{ profile.names }}" src="{{profile.avatar|crop_image}}">
-                                                    {% else %}
-                                                    <img alt="Default avatar for {{ profile.names }}" src="{{ 'avatar.svg'|media }}" width="82" height="67" class="no-image">
-                                                    {% endif %}
+                                            <div class="company_description_wrapper">
+                                                <div class="company_description collapsed">
+                                                    {{ partner.content | raw }}
                                                 </div>
-                                                <div class="col-md-7 col-xs-12 coordinator_info">
-                                                    <div class="">
-                                                        <h4 id="member-name-{{k}}-{{loop.index}}">{{ profile.names }}</h4>
-                                                        {% if profile.email %}
-                                                        <div class="position">
-                                                            <a href="mailto:{{ profile.email }}"
-                                                               target="_blank"
-                                                               aria-label="Send email to {{ profile.names }}">{{ profile.email }}</a>
-                                                        </div>
+                                                <div class="description_overlay"></div>
+                                                <p class="read-more dorsal" onclick="expandBiography(this);">
+                                                    {{ 'Read more' | _ }}
+                                                </p>
+                                            </div>
+                                            {% if insider_members.getIM(partner.id).count > 0 %}
+                                                {% for profile in insider_members.getIM(partner.id) %}
+                                                <article class="contact_info row" role="article" aria-labelledby="member-name-{{k}}-{{loop.index}}">
+                                                    <div class="col-md-2 col-xs-12 coordinator_image">
+                                                        {% if profile.avatar %}
+                                                        <img alt="Photo of {{ profile.names }}" src="{{profile.avatar|crop_image}}">
+                                                        {% else %}
+                                                        <img alt="Default avatar for {{ profile.names }}" src="{{ 'avatar.svg'|media }}" width="82" height="67" class="no-image">
                                                         {% endif %}
-                                                        {% if profile.position %} <div class="position">{{ profile.position }}</div>{% endif %}
                                                     </div>
-                                                </div>
-                                                <div class="col-md-2 col-xs-12 end-md center-xs">
-                                                    <p class="read-more"
-                                                       onclick="expandBiography(this);"
-                                                       aria-expanded="false"
-                                                       aria-controls="bio-{{k}}-{{loop.index}}"
-                                                       aria-label="Read biography of {{ profile.names }}">{{'Biography'|_}}</p>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="body"
-                                                         id="bio-{{k}}-{{loop.index}}"
-                                                         style="display: none;"
-                                                         role="region"
-                                                         aria-labelledby="member-name-{{k}}-{{loop.index}}">{{ profile.content|raw }}</div>
-                                                </div>
-                                            </article>
-                                            {% endfor %}
+                                                    <div class="col-md-7 col-xs-12 coordinator_info">
+                                                        <div class="">
+                                                            <h4 id="member-name-{{k}}-{{loop.index}}">{{ profile.names }}</h4>
+                                                            {% if profile.email %}
+                                                            <div class="position">
+                                                                <a href="mailto:{{ profile.email }}"
+                                                                   target="_blank"
+                                                                   aria-label="Send email to {{ profile.names }}">{{ profile.email }}</a>
+                                                            </div>
+                                                            {% endif %}
+                                                            {% if profile.position %} <div class="position">{{ profile.position }}</div>{% endif %}
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-xs-12 end-md center-xs">
+                                                        <p class="read-more"
+                                                           onclick="expandBiography(this);"
+                                                           aria-expanded="false"
+                                                           aria-controls="bio-{{k}}-{{loop.index}}"
+                                                           aria-label="Read biography of {{ profile.names }}">{{'Biography'|_}}</p>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="body"
+                                                             id="bio-{{k}}-{{loop.index}}"
+                                                             style="display: none;"
+                                                             role="region"
+                                                             aria-labelledby="member-name-{{k}}-{{loop.index}}">{{ profile.content|raw }}</div>
+                                                    </div>
+                                                </article>
+                                                {% endfor %}
+                                            {% endif %}
                                         </div>
                                     </section>
-                                    {% endif %}
+
                                 </div>
                             </div>
                         </div>

@@ -440,13 +440,46 @@ $(document).ready(function() {
 
 });
 
-function expandBiography(el){
-    $el = $(el) // read-more link
-    $body  = $el.parent().parent().find('.body');
-    if($body.is(':visible')){
+// function expandBiography(el){
+//     $el = $(el) // read-more link
+//     $body  = $el.parent().parent().find('.body');
+//     if($body.is(':visible')){
+//         $body.slideUp(300);
+//         $el.addClass('expanded');
+//     }else{
+//         $body.slideDown(300);
+//         $el.removeClass('expanded');
+//     }
+// }
+
+function expandBiography(el) {
+    var $el = $(el);
+
+    // ── Company description toggle ──────────────────
+    if ($el.hasClass('dorsal')) {
+        var $wrapper = $el.closest('.company_description_wrapper');
+        var $desc    = $wrapper.find('.company_description');
+        var $overlay = $wrapper.find('.description_overlay');
+        var isExpanded = $desc.hasClass('expanded');
+
+        if (isExpanded) {
+            $desc.removeClass('expanded');
+            $overlay.removeClass('hidden');
+            $el.removeClass('expanded').text('Read more');
+        } else {
+            $desc.addClass('expanded');
+            $overlay.addClass('hidden');
+            $el.addClass('expanded').text('Read less');
+        }
+        return;
+    }
+
+    // ── Biography toggle (existing behaviour) ───────
+    var $body = $el.parent().parent().find('.body');
+    if ($body.is(':visible')) {
         $body.slideUp(300);
         $el.addClass('expanded');
-    }else{
+    } else {
         $body.slideDown(300);
         $el.removeClass('expanded');
     }

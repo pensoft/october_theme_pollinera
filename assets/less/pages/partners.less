@@ -13,9 +13,9 @@
 
     .title_and_link{
         display: flex;
-        align-items: start;
-        flex-direction: column;
-        justify-content: space-between;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
         border-bottom: 1px solid #DEDEDE;
         padding-bottom: 30px;
         margin-bottom: 28px;
@@ -36,10 +36,12 @@
             color: #000;
             font-size: 18px;
             font-style: normal;
-            font-weight: 500;
+            font-weight: 600;
             line-height: 120%; /* 21.6px */
             letter-spacing: -0.54px;
             text-align: left;
+            margin-bottom: 0;
+            margin-left: 45px;
         }
 
         .partners_list_content{
@@ -151,6 +153,102 @@
                 });
             }
         }
+    }
+
+
+
+
+    // ── Description expand ──────────────────────────────────────────
+    .company_description_wrapper {
+        position: relative;
+        margin-bottom: 28px;
+        padding-bottom: 10px;
+    }
+
+    .company_description {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #4E4E4E;
+        font-weight: 300;
+        max-height: 120px;
+        overflow: hidden;
+        // ── Smooth expand ──────────────────────────────
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &.expanded {
+            max-height: 2000px; // large enough for any content
+        }
+    }
+
+    .description_overlay {
+        position: absolute;
+        bottom: 32px;
+        left: 0;
+        right: 0;
+        height: 80px;
+        // ── #f9f9f9 overlay ────────────────────────────
+        background: linear-gradient(to bottom, rgba(249,249,249,0) 0%, rgba(249,249,249,1) 100%);
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+
+        &.hidden {
+            opacity: 0;
+        }
+    }
+
+    // ── Read more — matches existing .read-more style ──
+    .company_description_wrapper > .read-more.dorsal {
+        margin-bottom: 0;
+        color: @link-color;
+        display: flex;
+        width: fit-content;
+        position: relative;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 27px;
+        letter-spacing: 0px;
+        cursor: pointer;
+        padding-right: 20px; // room for the arrow
+
+        &:after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            margin-top: -5px;
+            width: 10px;
+            height: 10px;
+            background: url('../../assets/images/arrow-down-blue.svg') no-repeat center center;
+            background-size: contain;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+
+        // Arrow points up when expanded
+        &.expanded:after {
+            transform: rotate(180deg);
+            margin-top: -5px;
+        }
+
+        &:hover:after {
+            transform: rotate(180deg);
+            margin-top: -5px;
+        }
+
+        // Don't flip the arrow twice when both expanded + hover
+        &.expanded:hover:after {
+            transform: rotate(0deg);
+        }
+    }
+
+    // Team members heading
+    .team-members-heading {
+        font-size: 16px;
+        font-weight: 500;
+        color: #4E4E4E;
+        margin-bottom: 20px;
+        margin-top: 4px;
     }
 }
 .partner-item{
