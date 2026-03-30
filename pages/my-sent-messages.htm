@@ -28,7 +28,7 @@ function onStart(){
                     <div class="col-xs-10 start-xs title_container">
                         {{record.subject}} &nbsp; <span class="date">{{record.created_at |date('d F Y')}}</span>
                     </div>
-                    <div class="col-xs-2 end-xs plusminus"><span class="plus"></span></div>
+                    <div class="col-xs-2 end-xs plusminus"><span class="plus" role="button" tabindex="0" aria-label="Toggle message details" aria-expanded="false"></span></div>
                 </div>
                 <div class="row accordion-content" style="display: none;">
                     {% if record.user.count %}
@@ -54,7 +54,7 @@ function onStart(){
                         <h2>Attachment(s):</h2>
                         <ul>
                             {% for attachment in record.attachments %}
-                            <li><a  href="{{attachment.path}}" target="_blank">{{attachment.file_name}}</a></li>
+                            <li><a href="{{attachment.path}}" target="_blank" rel="noopener noreferrer" aria-label="Download {{attachment.file_name}} (opens in new window)">{{attachment.file_name}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>

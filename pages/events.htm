@@ -193,12 +193,14 @@ $this['slug'] = $this->param('slug');
                 <h1 class="single-new-title">{{entry.title}}</h1>
             </div>
             <div class="col-xs-12 center-xs">
+                <figure>
                 {% if entry.cover_image %}
                 <img class="content mb-2" src="{{ entry.cover_image|crop_image|resize(673, auto, { mode: 'crop' }) }}" alt="{{entry.title}}" />
                 {% endif %}
                 {% if entry.caption %}
                 <figcaption class="caption">{{entry.caption|raw}}</figcaption>
                 {% endif %}
+                </figure>
             </div>
 
             <div class="col-xs-12">
@@ -206,7 +208,7 @@ $this['slug'] = $this->param('slug');
                     {{entry.description|raw}}
 
                     {% if entry.url %}
-                    <a href="{{entry.url}}" target="_blank" class="btn btn-primary">Go to event website</a>
+                    <a href="{{entry.url}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Go to event website (opens in new window)">Go to event website</a>
                     {% endif %}
                 </div>
 

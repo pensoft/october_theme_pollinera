@@ -42,10 +42,10 @@ function onStart(){
 
 		<div class="col-xs-6 col-md-10 leftBox" style="margin-top: 20px">
 			<div>Email: <span class="email"><a href="mailto:{{ user.email }}">{{ user.email }}</a></span></div>
-			<div>Partner: <span><a href="{{user.instituion_url}}" target="_blank">{{user.instituion}}</a></span></div>
+			<div>Partner: <span><a href="{{user.instituion_url}}" target="_blank" rel="noopener noreferrer" aria-label="Visit {{user.instituion}} website (opens in new window)">{{user.instituion}}</a></span></div>
 		</div>
 		<div class="col-xs-12 col-md-2 end-md center-xs">
-			<a href="mailto:{{ user.email }}"><img src="{{'mail.svg'|media}}" style="width: 21px; position: relative; top: 2px;" /> Send message</a>
+			<a href="mailto:{{ user.email }}" aria-label="Send message to {{ user.name }} {{ user.surname }}"><img src="{{'mail.svg'|media}}" style="width: 21px; position: relative; top: 2px;" alt="" aria-hidden="true" /> Send message</a>
 		</div>
 	</div>
 	{% endfor %}

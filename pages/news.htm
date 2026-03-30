@@ -107,12 +107,14 @@ $this['related'] = $related;
                 <h1 class="single-new-title">{{article.title}}</h1>
             </header>
             <div class="col-xs-12">
+                <figure>
                 {% if article.cover %}
                 <img class="content" src="{{ article.cover.getThumb(673, auto, {'mode': 'crop'}) }}" alt="{{article.title}}" />
                 {% endif %}
                 {% if article.caption %}
                 <figcaption class="caption">{{article.caption|raw}}</figcaption>
                 {% endif %}
+                </figure>
             </div>
 
             <div class="col-xs-12">
