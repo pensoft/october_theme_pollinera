@@ -44,7 +44,7 @@ update_selector = "#gdpr-reload"
 
     <!-- Hidden element for Google Translate API access -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
-    <div id="google_translate_element_hidden" style="display: none;"></div>
+
 
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -81,6 +81,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 
 <body>
+<a href="#layout-content" class="skip-to-main">Skip to main content</a>
+<div id="google_translate_element_hidden" style="display: none;"></div>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PWW5NKQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -99,7 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </header>
 
     <!-- Content -->
-    <section id="layout-content" class="{{this.page.id}}" {% if user and this.page.id != 'home' %} style="padding-top: 154px!important;" {% endif %}>
+    <section id="layout-content" class="{{this.page.id}}" tabindex="-1" {% if user and this.page.id != 'home' %} style="padding-top: 154px!important;" {% endif %}>
         {% page %}
     </section>
 </div>

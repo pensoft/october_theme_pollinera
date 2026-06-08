@@ -41,6 +41,15 @@ DB::raw("
 
 )->where('slug', $this->param('slug'))->first();
 
+// Override SeoCmsPage's title so the browser <title> reflects the event,
+// not the generic "Events" page label (audit P-04, WCAG 2.4.2).
+if ($this['entry'] && ($seoComponent = $this->findComponentByName('SeoCmsPage'))) {
+    $seoComponent->seo_title = $this['entry']['title'];
+    if (!empty($this['entry']['description'])) {
+        $seoComponent->seo_description = str_limit(Html::strip($this['entry']['description']), 255);
+    }
+}
+
 \BennoThommo\Meta\Meta::set('twitter:card', 'summary_large_image');
 \BennoThommo\Meta\Meta::set('twitter:title', $this['entry']['title']);
 \BennoThommo\Meta\Meta::set('twitter:description', str_limit(Html::strip($this['entry']['description']), 255));
@@ -66,7 +75,11 @@ $this['slug'] = $this->param('slug');
 }
 ?>
 ==
+{# When on an event detail page, the event title is the h1.
+   On the listing page, "Events" is the h1. Avoids two h1s (audit P-03). #}
+{% if not slug %}
 <h1 id="events-heading" class="underline">Events</h1>
+{% endif %}
 <main id="main-content" role="main">
     {% if not slug %}
     <section class="container" aria-labelledby="events-heading">

@@ -1,0 +1,61 @@
+// Accessibility: visible focus indicator (WCAG 2.4.7 AA / audit P-01)
+//
+// Restores a strong :focus-visible outline that the legacy
+// `outline: none` rules in master.less, buttons.less, accordion.less
+// and others had removed. Imported last in theme.less so it wins
+// the cascade.
+
+@focus-outline-color: #000;
+@focus-halo-color:    #E4CB1E; // brand yellow
+
+:focus-visible {
+    outline: 3px solid @focus-outline-color !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 5px @focus-halo-color !important;
+}
+
+// Keyboard focus must remain visible on interactive elements even when
+// component styles further down the cascade re-declare outline: none.
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible,
+[role="tab"]:focus-visible,
+.btn:focus-visible,
+.accordion-toggle:focus-visible,
+.ui-accordion-header:focus-visible {
+    outline: 3px solid @focus-outline-color !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 5px @focus-halo-color !important;
+}
+
+// Suppress focus ring for pointer/mouse interactions; only show it for
+// keyboard focus, matching native browser behaviour.
+:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
+
+// Skip-to-main-content link (also referenced by P-02 in the roadmap).
+// Hidden visually until it receives keyboard focus.
+.skip-to-main {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100000;
+    background: #000;
+    color: #fff !important;
+    padding: 8px 16px;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:focus,
+    &:focus-visible {
+        left: 8px;
+        top: 8px;
+    }
+}

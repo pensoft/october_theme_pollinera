@@ -244,9 +244,14 @@ nav:not(.navbar){
                 font-weight: bold;
                 color: #4E4E4E;
                 text-align: left;
-                height: 75px;
+                // Full title is in the DOM for screen readers (audit P-08).
+                // Visual clamp to 3 lines keeps card heights consistent.
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
                 .breakpoint-large-down({
-                    height: auto;
+                    -webkit-line-clamp: 4;
                     font-size: 18px;
                 });
             }

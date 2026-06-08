@@ -130,6 +130,17 @@ a.ui-button:active,
     .col-md-6:nth-of-type(1){
         padding: 0!important;
     }
+
+    // Two-column layout for Work Packages. DOM order (WP1, WP2, WP3 ...) is
+    // preserved so screen readers read items in numerical order; the visual
+    // grid simply flows them left-to-right, top-to-bottom (audit P-06).
+    #structure {
+        .breakpoint-large({
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 30px;
+        });
+    }
 }
 
 .work_packages .accordion-border{
@@ -152,16 +163,21 @@ a.ui-button:active,
     color: #4E4E4E;
     font-size: 19px;
     font-weight: 600;
+    // Reset native <button> defaults so the toggle visually matches the
+    // previous <div>-based design (audit P-09 made each item a real button).
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex; // matches Flexboxgrid .row behaviour for the inner spans
     .col-xs.start-xs{
         .breakpoint-large-down({
             padding: 10px;
         });
     }
-    &:focus{
-        outline: none;
-    }
-
-
+    // Note: a visible :focus-visible ring is provided globally by
+    // components/a11y-focus.less (audit P-01); we intentionally do not
+    // suppress focus here.
 }
 .work_packages .accordion-content{
     margin-top: 20px;
@@ -264,11 +280,47 @@ a.ui-button:active,
     width: 100%;
     height: 47px;
     padding: 0 9px;
-    &:focus{
-        outline: none;
+    // Reset native <button> defaults so it visually matches the previous
+    // <div>-based toggle (audit P-10 converted these to real buttons).
+    text-align: left;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    // Visible :focus-visible ring is provided globally by
+    // components/a11y-focus.less (audit P-01).
+}
+
+// Visual treatment for fieldset-style group labels that replaced the
+// `<label for="...">` rows pointing at a fake select (audit P-10).
+.field-group-label{
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+// Form-level status live region (audit P-07). Visible to sighted users,
+// announced to AT users via role="status" + aria-live="polite".
+.form-status{
+    &:empty{
+        display: none;
     }
+    margin: 10px 0;
+    padding: 8px 12px;
+    background: #fff8d6;
+    border-left: 4px solid @yellow-color;
+    color: @dark-color;
+    font-weight: 500;
+}
 
-
+// Per-field validation message rendered by scrollToField() in app.js.
+// Text label (not colour alone) ensures the error is announced (audit P-11,
+// WCAG 1.4.1 / 3.3.1).
+.field-error-message{
+    margin: 4px 0 0;
+    padding: 0;
+    color: #b00020;
+    font-size: 0.9em;
+    font-weight: 500;
 }
 .getinvolved_form_accordion .accordion-content{
     border-top: 1px solid #CFCFCF;

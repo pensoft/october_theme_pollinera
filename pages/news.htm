@@ -30,6 +30,20 @@ $seoTitle = $this['article']['title'];
 $seoKeywords = $this['article']['meta_keywords'] ?: $this['article']['keywords'];
 $seoDescription = str_limit(Html::strip($this['article']['content']), 255);
 
+// Override the SeoCmsPage component's seo_title so the browser <title>
+// reflects the article, not the generic "News" label (audit P-04, WCAG 2.4.2).
+if ($seoComponent = $this->findComponentByName('SeoCmsPage')) {
+    if ($seoTitle) {
+        $seoComponent->seo_title = $seoTitle;
+    }
+    if ($seoDescription) {
+        $seoComponent->seo_description = $seoDescription;
+    }
+    if ($seoKeywords) {
+        $seoComponent->seo_keywords = $seoKeywords;
+    }
+}
+
 if (class_exists('\BennoThommo\Meta\Meta')) {
 if($seoTitle) {
 \BennoThommo\Meta\Meta::set('title', $seoTitle);
@@ -93,7 +107,11 @@ $this['related'] = $related;
 }
 ?>
 ==
+{# When on a detail page, the page's h1 is the article title (below).
+   On the listing, "News" is the h1. Avoids the two-h1 violation (audit P-03). #}
+{% if not is_detail_page %}
 <h1 class="underline">News</h1>
+{% endif %}
 <main id="main-content" role="main">
     <div class="container">
 
@@ -148,8 +166,7 @@ $this['related'] = $related;
 
         {% else %}
 
-        <section aria-labelledby="news-heading">
-            <h1 id="news-heading" class="sr-only">News</h1>
+        <section aria-label="News articles">
             <div class="news-list">
                 {% for record in records %}
                 {% spaceless %}
@@ -166,7 +183,10 @@ $this['related'] = $related;
                             <time class="text-published" datetime="{{record.published_at|date('Y-m-d')}}">{{record.published_at|date("j M Y")}}</time>
                             <div class="news-title">
                                 <a href="{{'news'|page}}/{{record.slug}}">
-                                    <h2 class="card-title">{{ record.title|length > 35 ? record.title|striptags|slice(0, 35)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.title|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</h2>
+                                    {# Full title is rendered into the heading so screen-reader users
+                                       hear the complete article title when scanning by headings.
+                                       Visual truncation is handled in CSS via .card-title (audit P-08, WCAG 2.4.6). #}
+                                    <h2 class="card-title">{{ record.title|striptags|replace({"&nbsp;": " ", ".": ". "}) }}</h2>
                                 </a>
                             </div>
                             <div class="body">{{ record.content|length > 90 ? record.content|striptags|slice(0, 90)|replace({"&nbsp;": " ", ".": ". "}) ~ '...' : record.content|striptags|replace({"&nbsp;": " ", ".": ". "})  }}</div>

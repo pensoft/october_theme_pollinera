@@ -67,14 +67,18 @@ $(document).ready(function() {
 
 
     $('body').on('click', '.work_packages .accordion-toggle, .getinvolved_form_accordion .accordion-toggle', function () {
-        if ($(this).next(".accordion-content").is(':visible')) {
-            $(this).next(".accordion-content").slideUp(300);
-            $(this).children().find(".plusminus").text('+');
-            $(this).children(".plusminus").html('<span class="plus"></span>');
+        var $toggle = $(this);
+        var $content = $toggle.next(".accordion-content");
+        if ($content.is(':visible')) {
+            $content.slideUp(300);
+            $toggle.attr('aria-expanded', 'false');
+            $toggle.children().find(".plusminus").text('+');
+            $toggle.children(".plusminus").html('<span class="plus"></span>');
         } else {
-            $(this).next(".accordion-content").slideDown(300);
-            $(this).children().find(".plusminus").text('-');
-            $(this).children(".plusminus").html('<span class="minus"></span>');
+            $content.slideDown(300);
+            $toggle.attr('aria-expanded', 'true');
+            $toggle.children().find(".plusminus").text('-');
+            $toggle.children(".plusminus").html('<span class="minus"></span>');
         }
     });
 
@@ -744,15 +748,73 @@ function init() {
     appendSignOut()
 }
 
-function scrollToField(errors){
-    $(".get_involved_form input, .get_involved_form select, .get_involved_form .row").removeClass('red_err_field');
-    $.each(errors.scroll_to_field, function(key,valueObj){
-        $("#"+key).addClass('red_err_field');
-        $('html, body').animate({
-            scrollTop: $("#"+key).offset().top - 200
-        }, 1000);
-        return false; // breaks
+function scrollToField(data){
+    // Reset previous error state (audit P-07 / P-11).
+    var $fields = $(".get_involved_form input, .get_involved_form select, .get_involved_form .row");
+    $fields.removeClass('red_err_field');
+    $(".get_involved_form [aria-invalid='true']").removeAttr('aria-invalid');
+    $(".get_involved_form .field-error-message").remove();
+
+    var $status = $('#form-status');
+
+    // Success path: PHP returns no scroll_to_field key when validation passes.
+    if (!data || !data.scroll_to_field) {
+        if ($status.length) {
+            $status.text('Thank you for contacting us. Your submission has been received.');
+        }
+        return;
+    }
+
+    // Validation failure: per-field text message + colour + aria-invalid so the
+    // failure is conveyed by more than just colour (audit P-11, WCAG 1.4.1 / 3.3.1).
+    // Announce a summary in the live region and move focus to the first invalid
+    // field (audit P-07, WCAG 4.1.3 / 2.4.3).
+    var firstFieldId = null;
+    var errorCount = 0;
+    $.each(data.scroll_to_field, function(key, messages){
+        errorCount++;
+        var $target = $("#"+key);
+        if (!$target.length) {
+            if (!firstFieldId) firstFieldId = key;
+            return;
+        }
+        $target.addClass('red_err_field').attr('aria-invalid', 'true');
+
+        var msgText = Array.isArray(messages) ? messages.join(' ') : String(messages);
+        var errId = 'err-' + key;
+        var $err = $('<p class="field-error-message" id="' + errId + '"></p>').text(msgText);
+        $target.attr('aria-describedby', errId);
+        // For wrapper div fields (e.g. checkbox group), append inside;
+        // for plain inputs, place the message after.
+        if ($target.is('input, select, textarea')) {
+            $target.after($err);
+        } else {
+            $target.append($err);
+        }
+
+        if (!firstFieldId) firstFieldId = key;
     });
+
+    if ($status.length) {
+        var summary = errorCount === 1
+            ? 'There is 1 problem with your submission. The first invalid field has been focused.'
+            : 'There are ' + errorCount + ' problems with your submission. The first invalid field has been focused.';
+        $status.text(summary);
+    }
+
+    if (firstFieldId) {
+        var $first = $("#"+firstFieldId);
+        if ($first.length && $first.offset()) {
+            $('html, body').animate({
+                scrollTop: $first.offset().top - 200
+            }, 500, function () {
+                if (!$first.is('input, select, textarea, button, a, [tabindex]')) {
+                    $first.attr('tabindex', '-1');
+                }
+                $first.trigger('focus');
+            });
+        }
+    }
 }
 
 init()

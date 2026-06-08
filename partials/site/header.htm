@@ -107,7 +107,8 @@ description_limit = 0
 {% if this.theme.header_image %}
 <div class="header-image {{page_id}}" role="banner">
     {% if page_id == 'home' %}
-    <div class="header-image-bar" role="img" aria-label="Header banner"></div>
+    {# Purely decorative background band — hide from AT (audit P-05, WCAG 1.1.1). #}
+    <div class="header-image-bar" aria-hidden="true"></div>
     <div class="jumbotron" data-aos="fade-up">
         <div class="container">
             <div class="intro">
