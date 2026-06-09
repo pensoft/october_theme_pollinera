@@ -20,7 +20,46 @@ templates = "template5"
 <section class="container" id="work-packages">
     <div class="row top-xs">
         <div class="col-md-12 col-xs-12 work_packages blue">
-            {% component 'accordion' %}
+            {#
+              Accessibility fix (audit P-06 + P-09) — the Work Packages list is rendered
+              directly here instead of via {% component 'accordion' %}. The component's
+              default.htm reordered items into odd/even columns with wrapAll() (breaking the
+              screen-reader reading order to WP1,3,5,7 then 2,4,6 — P-06) and initialised a
+              jQuery UI accordion that announced the items as a single "tab expanded
+              selected" group (P-09). The [accordion] component is kept attached above only
+              as the data source for category 1 (accordion.getAccordion()).
+
+              Each item below is a real <button> — individually keyboard-focusable and
+              operable with Enter/Space — with aria-expanded/aria-controls toggled by the
+              handler in assets/js/app.js. Items are output in natural sort order, so the
+              DOM order matches the numerical order; the two-column layout is handled purely
+              in CSS (#structure grid in assets/less/components/accordion.less).
+            #}
+            {% set workPackages = accordion.getAccordion() %}
+            {% if workPackages %}
+            <h2 class="underline">{{ workPackages.name }}</h2>
+            <div id="structure" class="row projects_services text-left relative top-xs">
+                {% for item in workPackages.items.sortBy('sort_order') %}
+                <div class="accordion-border key_{{ loop.index0 }}">
+                    <button type="button" class="row middle-xs accordion-toggle" aria-expanded="false" aria-controls="wp-content-{{ item.id }}">
+                        <span class="col-xs-2 green_bullet">{{ item.prefix }}</span>
+
+                        <span class="col-xs start-xs">{{ item.title }}</span>
+
+                        <span class="col-xs-2 end-xs plusminus" aria-hidden="true"><span class="plus"></span></span>
+                    </button>
+
+                    <div id="wp-content-{{ item.id }}" class="accordion-content" style="display: none;">
+                        {{ item.body|raw }}
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% if accordion.loggedIn %}
+                <p><a class="edit-link" href="/admin/pensoft/accordions/accordionitem" target="_blank">Edit</a></p>
+                {% endif %}
+            </div>
+            {% endif %}
         </div>
     </div>
     <div class="schema" data-aos="zoom-in">
