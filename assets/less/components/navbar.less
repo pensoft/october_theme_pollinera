@@ -348,7 +348,7 @@
             background: @black-color!important;
             color: @white-color!important;
             .navbar-brand{
-                background:  url("../../assets/images/PollinERA-LOGO-white.svg") center no-repeat!important;
+                background:  url("../../assets/images/PollinERA-LOGO-white.svg") left no-repeat!important;
             }
 
             a{
@@ -777,6 +777,16 @@
 
         .dropdown-menu{
             padding-left: 0!important;
+            /* The desktop dropdown uses opacity:0 + a one-shot rotateX animation
+               to fade in on hover. Inside the off-canvas #menu (display:none on
+               load) iOS Safari never runs that animation, so the submenu stays at
+               opacity:0. On mobile the level-2 items are always expanded, so just
+               force them visible. */
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            animation: none !important;
+            transform: none !important;
         }
     }
 
@@ -872,7 +882,7 @@
 .userway_buttons_wrapper{
     margin-top: 120px;
     .breakpoint-large-down({
-        margin-top: 120px!important;
+        margin-top: 80px!important;
     });
 }
 

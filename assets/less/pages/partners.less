@@ -30,6 +30,7 @@
         img{
             height: 60px;
             width: auto;
+            max-width: 100%;
             object-fit: scale-down;
         }
 
@@ -269,6 +270,11 @@
     align-items: center;
     justify-content: space-between;
 
+    // Keep all partner cards a uniform height on mobile.
+    .breakpoint-large-down({
+        min-height: 160px;
+    });
+
     h4, h2{
         font-size: 25px;
         line-height: 32px;
@@ -280,17 +286,19 @@
     }
     img{
         max-width: 130px;
+        max-height: 60px;
         width: auto;
-        height: 60px;
-        object-fit: scale-down;
+        height: auto;
+        object-fit: contain;
         object-position: left;
         display: flex;
         .breakpoint-large-down({
+            max-width: 100%;
+            max-height: 100px;
             width: auto;
-            width: 100%;
+            height: auto;
             object-fit: contain;
-            height: unset;
-            margin-bottom: 20px;
+            //margin-bottom: 20px;
         });
     }
 
@@ -389,6 +397,14 @@
     z-index: 10;
     border: none;
     background: none;
+
+    .breakpoint-large-down({
+        width: 30px;
+        height: 30px;
+        display: block;
+        top: 8px;
+        right: 14px;
+    });
     svg{
         width: 18px;
         height: 18px;
@@ -503,7 +519,10 @@
                 //padding: 50px;
                 img{
                     width: auto;
+                    height: auto;
                     max-width: 65%;
+                    max-height: 100%;
+                    object-fit: contain;
                 }
             }
 
@@ -689,6 +708,11 @@
                 align-items: center;
                 justify-content: center;
                 gap: 10px;
+                // The base .btn sets `word-break: break-all`, which breaks words
+                // mid-character. Wrap on word boundaries instead.
+                word-break: normal;
+                overflow-wrap: break-word;
+                text-align: center;
 
                 &:hover {
                     border: 1px solid #E4CB1E;
@@ -712,6 +736,7 @@
                 align-items: center;
                 transform-origin: top center;
                 line-height: 1;
+                flex-shrink: 0; // keep the icon intact when the label wraps
             }
 
             .bell-icon__clapper {

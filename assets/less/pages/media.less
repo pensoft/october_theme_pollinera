@@ -89,8 +89,23 @@
         justify-content: space-evenly;
         margin-bottom: 50px;
     });
+    // The base .btn switches to width:100% with no horizontal padding on small
+    // screens, which stretches these pills full-width and leaves the download
+    // icon stranded at the far left. Keep them compact and stacked on mobile.
+    .breakpoint-small-down({
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 40px;
+    });
     form{
         width: fit-content;
+    }
+    a.btn{
+        .breakpoint-small-down({
+            width: auto;
+            padding-left: 30px;
+            padding-right: 30px;
+        });
     }
     button{
         padding: 10px 30px 10px 45px;
@@ -107,6 +122,13 @@
             background-size: 15px;
             background-position: 22px 16px;
         }
+        // Stay a compact pill (don't stretch full-width) so the icon keeps
+        // sitting next to the label, as on desktop.
+        .breakpoint-large-down({
+            width: auto;
+            padding-left: 45px;
+            padding-right: 30px;
+        });
     }
 }
 
@@ -232,7 +254,7 @@
 }
 
 .about-videos-section{
-    
+
     padding: 60px 0;
 
     h1 {
@@ -326,6 +348,7 @@
 
         .slick-dots {
             bottom: -40px;
+            padding-left: 0;
 
             li {
                 margin: 0 5px;

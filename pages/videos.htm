@@ -78,7 +78,7 @@ return Response::download($pathToFile, $fileName, $headers);
         {% if records.count() %}
         <div class="row">
             {% for record in records %}
-            <article class="col-md-4 col-xs-12">
+            <article class="col-md-4 col-xs-12 mb-4">
 
                 {% if record.youtube_url %}
                 <iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

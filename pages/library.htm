@@ -24,3 +24,29 @@ description_limit = 0
     <div class="container">
         {% component 'LibraryPage' %}
     </div>
+
+    {# Mobile-only quick scroll-to-top button (revealed after scrolling). #}
+    <button type="button" id="libraryScrollTop" class="library-scroll-top" aria-label="Scroll back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 14l6-6 6 6" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+
+    <script>
+        (function () {
+            var btn = document.getElementById('libraryScrollTop');
+            if (!btn) return;
+            function toggle() {
+                if (window.pageYOffset > 300) {
+                    btn.classList.add('is-visible');
+                } else {
+                    btn.classList.remove('is-visible');
+                }
+            }
+            window.addEventListener('scroll', toggle, { passive: true });
+            btn.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            toggle();
+        })();
+    </script>
