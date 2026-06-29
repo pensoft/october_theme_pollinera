@@ -22,6 +22,10 @@ description_limit = 0
         {% component 'jumbotron' %}
     </div>
     <div class="container">
+        {# Section heading for the library list. Keeps the page outline h1 → h2 → h3
+           (card titles are <h3>); visually hidden to preserve the existing design
+           (audit: library h1/h3 skip, WCAG 1.3.1 / 2.4.6). #}
+        <h2 class="sr-only">Library items</h2>
         {% component 'LibraryPage' %}
     </div>
 
