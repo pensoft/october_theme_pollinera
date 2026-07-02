@@ -90,7 +90,7 @@ description_limit = 0
             <a class="close-search" href="#" role="button" onclick="hideSearchForm();return false;" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();hideSearchForm();}" aria-label="Close search">
                 <span aria-hidden="true">&#10006;</span>
             </a>
-            <form class="input-group align-items-start" action="{{ url('search')}}" method="get">
+            <form class="input-group align-items-start" action="{{ url('search')}}" method="get" aria-label="Search the website">
                 <label for="search-input" class="sr-only">Search</label>
                 <input class="form-control search_input" id="search-input" style="color: #000;" name="q" type="text" autocomplete="on" placeholder="Search" aria-label="Search query">
                 <button class="btn btn-link pr p-search big text-grey-search-btn" type="submit" aria-label="Submit search">
