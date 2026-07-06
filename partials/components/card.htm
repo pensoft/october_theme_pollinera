@@ -24,7 +24,7 @@ function onStart()
         {% if title %}
             <h3 class="card-title">{{title}}</h3>
         {% endif %}
-        {{body|raw}}
+        {{body|ensure_img_alt|raw}}
     </div>
     {% endif %}
     {% if footer %}

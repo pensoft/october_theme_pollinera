@@ -21,6 +21,6 @@ id, url, title, cover, published_at, content
             </div>
         </div>
         <div class="article-published">{{published_at}}</div>
-        <div class="article-content">{{content|raw}}</div>
+        <div class="article-content">{{content|ensure_img_alt|raw}}</div>
     </div>
 </div>

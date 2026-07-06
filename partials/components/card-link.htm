@@ -13,6 +13,6 @@ url, title, image, content
         {% endif %}
     </div>
     <div class="link-body">
-        {{content|raw}}
+        {{content|ensure_img_alt|raw}}
     </div>
 </div>

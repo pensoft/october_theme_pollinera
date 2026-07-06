@@ -50,7 +50,7 @@ templates = "template5"
                     </button>
 
                     <div id="wp-content-{{ item.id }}" class="accordion-content" style="display: none;">
-                        {{ item.body|raw }}
+                        {{ item.body|ensure_img_alt|raw }}
                     </div>
                 </div>
                 {% endfor %}

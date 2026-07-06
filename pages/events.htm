@@ -218,7 +218,7 @@ $this['slug'] = $this->param('slug');
 
             <div class="col-xs-12">
                 <div class="content">
-                    {{entry.description|raw}}
+                    {{entry.description|ensure_img_alt|raw}}
 
                     {% if entry.url %}
                     <a href="{{entry.url}}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" aria-label="Go to event website (opens in new window)">Go to event website</a>

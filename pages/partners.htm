@@ -50,7 +50,7 @@ function onSinglePartner(){
 }
 ?>
 ==
-<h1 class="underline">Partners</h1>
+<h1 id="partners-heading" class="underline">Partners</h1>
 <main id="main-content" role="main">
     <section class="container partners-intro" aria-labelledby="partners-heading">
         {% component 'jumbotron' %}
@@ -58,7 +58,10 @@ function onSinglePartner(){
             <div class="row partners_list">
                 {% for k, partner in partners %}
                 <div class="col-md-4 col-xs-12">
-                    <article class="row partner-item" tabindex="0" aria-labelledby="partner-title-{{k}}">
+                    {# No visible title element inside the card (only the logo + Read more),
+                       so name the article directly with the institution (WCAG 4.1.2).
+                       Previously referenced a non-existent id "partner-title-{{k}}". #}
+                    <article class="row partner-item" tabindex="0" aria-label="{{ partner.instituion }}">
                         <div class="col-md-5 col-xs-5 start-md center-xs">
                             <img src="{{partner.cover.path}}"
                                  title="{{partner.instituion}}"
@@ -101,11 +104,12 @@ function onSinglePartner(){
                                              title="{{partner.instituion}}"
                                              alt="{{partner.instituion}} logo">
                                         </a>
-                                        <h3>{{partner.instituion}}</h3>
+                                        <h3 id="modal-title-{{k}}">{{partner.instituion}}</h3>
                                     </div>
 
 
-                                    <section role="region" aria-labelledby="members-heading-{{k}}">
+                                    {# No "members-heading-{{k}}" element exists; name the region directly (WCAG 4.1.2). #}
+                                    <section role="region" aria-label="About {{ partner.instituion }}">
                                         <div class="partners_list_content">
                                             <div class="company_description_wrapper">
                                                 <div class="company_description collapsed">
@@ -151,7 +155,7 @@ function onSinglePartner(){
                                                              id="bio-{{k}}-{{loop.index}}"
                                                              style="display: none;"
                                                              role="region"
-                                                             aria-labelledby="member-name-{{k}}-{{loop.index}}">{{ profile.content|raw }}</div>
+                                                             aria-labelledby="member-name-{{k}}-{{loop.index}}">{{ profile.content|ensure_img_alt|raw }}</div>
                                                     </div>
                                                 </article>
                                                 {% endfor %}
