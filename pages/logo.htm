@@ -118,11 +118,23 @@ return Response::download($pathToFile, $fileName, $headers);
                     {% endif %}
 
                     {% if record.file_pdf %}
-                    <a href="{{record.file_pdf.path}}"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="btn btn-primary"
-                       aria-label="Download {{record.name}} logo in PDF format (opens in new window)">PDF</a>
+                    {{form_open({ request: 'onDownloadFile' }) }}
+                    <input type="hidden" value="{{record.file_pdf.id}}" name="id">
+                    <button type="submit"
+                            data-attach-loading
+                            class="btn btn-primary"
+                            aria-label="Download {{record.name}} logo in PDF format">PDF</button>
+                    {{ form_close() }}
+                    {% endif %}
+
+                    {% if record.file_zip %}
+                    {{form_open({ request: 'onDownloadFile' }) }}
+                    <input type="hidden" value="{{record.file_zip.id}}" name="id">
+                    <button type="submit"
+                            data-attach-loading
+                            class="btn btn-primary"
+                            aria-label="Download {{record.name}} logo in ZIP format">ZIP</button>
+                    {{ form_close() }}
                     {% endif %}
                 </div>
             </article>

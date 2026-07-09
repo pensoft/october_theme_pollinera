@@ -32,6 +32,9 @@
         color: @white-color!important;
         font-size:18px;
         letter-spacing: 0px;
+        .breakpoint-huge-down({
+            font-size: 16px;
+        });
     }
 
     &.fixed {
@@ -189,6 +192,9 @@
     .search-and-social-media{
         ul{
             padding: 0 30px!important;
+            .breakpoint-huge-down({
+                padding: 0 0px!important;
+            });
         }
         min-width: fit-content;
         .navbar-nav{
@@ -215,6 +221,10 @@
                         align-items: center;
                         justify-content: center;
                         font-weight: normal;
+                        .breakpoint-huge-down({
+                            width: 30px;
+                            height: 30px;
+                        });
                     }
 
                 }
@@ -275,7 +285,7 @@
 
                         /* navbar arrows**/
                         position: relative;
-                        margin-right: 20px;
+                        margin-right: 10px;
                         &:after {
                             content: '';
                             display: block;
@@ -311,6 +321,10 @@
                                 letter-spacing: 0px;
                                 margin-bottom: 5px;
                                 color: @white-color !important;
+
+                                .breakpoint-huge-down({
+                                    font-size: 16px;
+                                });
                                 &:hover{
                                     opacity: 0.6;
                                 }
@@ -447,6 +461,9 @@
     .search-and-social-media{
         ul{
             padding: 0 30px!important;
+            .breakpoint-huge-down({
+                padding: 0 0px!important;
+            });
         }
         min-width: fit-content;
         .navbar-nav{
@@ -469,6 +486,10 @@
                         align-items: center;
                         justify-content: center;
                         font-weight: normal;
+                        .breakpoint-huge-down({
+                            width: 30px;
+                            height: 30px;
+                        });
                     }
                     &:hover{
                         background: @link-color;
@@ -580,7 +601,7 @@
     top: 35px;
     right: 47px;
     cursor: pointer;
-    color: @black-color;
+    color: @black-color!important;
     background: @white-color;
     border-radius: 50%;
     font-size: 18px;
@@ -591,9 +612,10 @@
         right: 31px;
     });
     .breakpoint-huge-down({
-        width: 39px;
-        height: 39px;
-        line-height: 39px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        right: 10px;
     });
 }
 
@@ -881,7 +903,7 @@
 
 .userway_buttons_wrapper{
     margin-top: 120px;
-    .breakpoint-large-down({
+    .breakpoint-huge-down({
         margin-top: 80px!important;
     });
 }
@@ -935,6 +957,9 @@
             font-style: normal;
             font-weight: 500;
             line-height: 20px; /* 142.857% */
+            .breakpoint-huge-down({
+                height: 30px;
+            });
 
             &:hover {
                 //background-color: #111;

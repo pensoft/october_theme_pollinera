@@ -123,6 +123,19 @@
             });
         }
 
+        // Rows 2 and 4 are authored Action-then-objective so the desktop grid
+        // alternates sides. Stacked on mobile that reads as Action above its
+        // objective, so reverse them to match rows 1 and 3: objective, Action.
+        // column-reverse rather than `order` — an order other than 0 would paint
+        // each box as z-index:0, creating a stacking context that traps its text
+        // below the insect (see the stacking note above).
+        &:nth-of-type(2), &:nth-of-type(4){
+            .breakpoint-large-down({
+                display: flex;
+                flex-direction: column-reverse;
+            });
+        }
+
         &:nth-of-type(1){
             background: @yellow-color;
             .breakpoint-large-down({
