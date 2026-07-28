@@ -50,6 +50,17 @@ function onStart(){
             {% endif %}
 
 
+            {% if presentations.count() %}
+            <div class="col-sm-2 col-xs-12">
+                <div class="card-container text-center">
+                    <a href="{{url('media-center')}}/scientific-posters" aria-label="Scientific posters">
+                        <span class="card_image_container" style="background: url({{'media-center/Promotional materials.svg'|media}}) center center no-repeat;" role="img" aria-label="Scientific posters icon"></span>
+                        <span class="media_label">Scientific posters</span>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
             {% if videos.count() %}
             <div class="col-sm-2 col-xs-12">
                 <div class="card-container text-center">

@@ -1,0 +1,130 @@
+url = "/media-center/scientific-posters"
+layout = "default"
+title = "Scientific posters"
+is_hidden = 0
+robot_index = "index"
+robot_follow = "follow"
+
+[builderList mediaPresentationsList]
+modelClass = "pensoft\Media\Models\Presentations"
+scope = "-"
+scopeValue = "{{ :scope }}"
+displayColumn = "name"
+noRecordsMessage = "No records found"
+detailsPage = "-"
+detailsUrlParameter = "id"
+pageNumber = "{{ :page }}"
+==
+<?php
+use Pensoft\Media\Models\Presentations;
+use System\Models\File;
+
+function onStart(){
+	$this['mediaPresentationsList'] = Presentations::orderBy('sort_order')->get();
+
+	if(get('download')){
+		$file = File::find((int)get('download'));
+		$file_name = $file->getLocalPath();
+		$recordName = get('file_name') ? get('file_name') : 'PollinERA_scientific_poster';
+		$ext = $file->getExtension();
+
+		if (file_exists($file_name)) {
+			header('Content-Description: File Transfer');
+			header('Content-Type: application/octet-stream');
+			header("Content-Type: application/force-download");
+			header('Content-Disposition: attachment; filename='.$recordName .'.'. $ext);
+			header('Content-Transfer-Encoding: binary');
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+			header('Pragma: public');
+			header('Content-Length: ' . filesize($file_name));
+			ob_clean();
+			flush();
+			readfile($file_name);
+			exit();
+		}
+		return Redirect::to('/media-center/scientific-posters');
+	}
+}
+
+function onDownloadFile(){
+	$file = File::find(post('id'));
+	$pathToFile = $file->getLocalPath();
+	$fileName = $file->file_name;
+	$fileType = $file->content_type;
+	$headers = [
+		'HTTP/1.1 200 OK',
+		'Pragma: public',
+		'Content-Type: '.$fileType,
+		'Content-Type: application/force-download'
+	];
+
+	return Response::download($pathToFile, $fileName, $headers);
+}
+?>
+==
+<h1 id="scientific-posters-heading" class="underline">Scientific posters</h1>
+<main id="main-content" role="main">
+    <section class="container flyer" aria-labelledby="scientific-posters-heading">
+
+        {% set records = mediaPresentationsList %}
+        {% set noRecordsMessage = mediaPresentationsList.noRecordsMessage %}
+
+        {% if records.count() %}
+        <div class="row">
+            {% for record in records %}
+            {% spaceless %}
+
+            <article class="col-md-4 col-xs-12 mb-4">
+                <h2 class="text-center">{{ record.name }}</h2>
+
+                {% if record.presentation_image %}
+                <div class="flyer-container">
+                    <img src="{{ record.presentation_image.path }}" alt="{{ record.name }} scientific poster">
+                </div>
+                {% endif %}
+
+                <div class="links">
+                    {% if record.url %}
+                    <a href="{{ record.url }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-primary"
+                       aria-label="View {{ record.name }} online (opens in new window)">View online</a>
+                    {% endif %}
+
+                    {% if record.file %}
+                    <a href="{{ record.file.path }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       data-attach-loading
+                       class="btn btn-primary"
+                       aria-label="Download {{ record.name }} (opens in new window)">Download</a>
+                    {% endif %}
+                </div>
+
+                {% if record.file_lang_versions.count() %}
+                <div class="links">
+                    {% for langFile in record.file_lang_versions %}
+                    <a href="{{ langFile.path }}"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn btn-primary"
+                       aria-label="Download {{ langFile.title ?: langFile.file_name }} version of {{ record.name }} (opens in new window)">{{ langFile.title ?: langFile.file_name }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </article>
+
+            {% endspaceless %}
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col-xs-12 text-center" role="status">
+                <p>{{ noRecordsMessage }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+</main>
