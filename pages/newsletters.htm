@@ -95,13 +95,10 @@ return Response::download($pathToFile, $fileName, $headers);
                     {% endif %}
 
                     {% if record.file %}
-                    {{form_open({ request: 'onDownloadFile' }) }}
-                    <input type="hidden" value="{{record.file.id}}" name="id">
-                    <button type="submit"
-                            data-attach-loading
-                            class="btn btn-primary"
-                            aria-label="Download {{record.name}} newsletter">Download</button>
-                    {{ form_close() }}
+                    <a href="{{record.file.path}}"
+                       download="{{record.file.file_name}}"
+                       class="btn btn-primary btn-download"
+                       aria-label="Download {{record.name}} newsletter">Download</a>
                     {% endif %}
 
                 </div>

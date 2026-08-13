@@ -107,7 +107,10 @@
             padding-right: 30px;
         });
     }
-    button{
+    // Download pills. These used to be <button>s inside a form; they are now
+    // plain <a download> links so Matomo can register the file download, so the
+    // styling has to cover both shapes.
+    button, a.btn-download{
         padding: 10px 30px 10px 45px;
         border-radius: 20px;
         font-size: 18px;
