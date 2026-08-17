@@ -54,7 +54,7 @@ return Redirect::to('/media-center/policy-briefs');
                 <span class="card_title">{{record.name}}</span><br>
                 <span class="card_image_container" style="background: url({{record.image.thumb(220, 220,{'mode':'crop'})}}) center center no-repeat;" title="{{record.name}}" role="img" aria-label="{{record.name}} cover image"></span>
 
-                <br><a href="{{ record.file.path }}#{{record.file.file_name}}" target="_blank" rel="noopener noreferrer" title="{{record.name}}" class="btn btn-primary" aria-label="Download {{record.name}} (opens in new window)">Download</a>
+                <br><a href="{{ url('download/' ~ record.file.id ~ '/' ~ record.file.file_name|url_encode) }}" target="_blank" rel="noopener noreferrer" title="{{record.name}}" class="btn btn-primary matomo-download" aria-label="Download {{record.name}} (opens in new window)">Download</a>
             </div>
         </div>
 

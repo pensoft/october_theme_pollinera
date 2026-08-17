@@ -1,0 +1,61 @@
+url = "/download/:id/:name"
+title = "Download"
+is_hidden = 0
+robot_index = "noindex"
+robot_follow = "nofollow"
+==
+<?php
+use System\Models\File;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+
+/**
+ * Serves an uploaded file under a URL that carries its original file name, so that
+ * Matomo reports the real name instead of the hashed disk name. The disposition is
+ * left as "inline" - anchors that must force a save keep their download attribute.
+ */
+function onStart()
+{
+	$id = (int) $this->param('id');
+
+	$file = $id ? File::find($id) : null;
+
+	// Only files that are already reachable through their public path may be served here,
+	// so this page cannot be used to read protected attachments.
+	if (!$file || !$file->isPublic()) {
+		return $this->notFound();
+	}
+
+	$fileName = $file->file_name ?: $file->disk_name;
+
+	// Keep one Matomo entry per file by sending stray names to the canonical URL.
+	$name = (string) $this->param('name');
+	if ($name !== $fileName && rawurldecode($name) !== $fileName) {
+		return Redirect::to('/download/' . $file->id . '/' . rawurlencode($fileName), 301);
+	}
+
+	$localPath = $file->getLocalPath();
+	if (!file_exists($localPath)) {
+		return $this->notFound();
+	}
+
+	$response = Response::file($localPath, [
+		'Content-Type' => $file->getContentType(),
+	]);
+
+	$response->setContentDisposition(
+		ResponseHeaderBag::DISPOSITION_INLINE,
+		$fileName,
+		preg_replace('/[^A-Za-z0-9._ -]+/', '_', $fileName)
+	);
+
+	return $response;
+}
+
+function notFound()
+{
+	$this->controller->setStatusCode(404);
+
+	return $this->controller->run('404');
+}
+?>
+==

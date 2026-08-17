@@ -88,11 +88,11 @@ return Response::download($pathToFile, $fileName, $headers);
                 <div class="links">
                     {% if record.file %}
 
-                    <a href="{{record.file.path}}"
+                    <a href="{{ url('download/' ~ record.file.id ~ '/' ~ record.file.file_name|url_encode) }}"
                        target="_blank"
                        rel="noopener noreferrer"
                        data-attach-loading
-                       class="btn btn-primary"
+                       class="btn btn-primary matomo-download"
                        aria-label="Download {{record.name}} (opens in new window)">Download</a>
 
                     {% endif %}

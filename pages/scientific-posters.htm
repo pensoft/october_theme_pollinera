@@ -94,11 +94,11 @@ function onDownloadFile(){
                     {% endif %}
 
                     {% if record.file %}
-                    <a href="{{ record.file.path }}"
+                    <a href="{{ url('download/' ~ record.file.id ~ '/' ~ record.file.file_name|url_encode) }}"
                        target="_blank"
                        rel="noopener noreferrer"
                        data-attach-loading
-                       class="btn btn-primary"
+                       class="btn btn-primary matomo-download"
                        aria-label="Download {{ record.name }} (opens in new window)">Download</a>
                     {% endif %}
                 </div>
@@ -106,10 +106,10 @@ function onDownloadFile(){
                 {% if record.file_lang_versions.count() %}
                 <div class="links">
                     {% for langFile in record.file_lang_versions %}
-                    <a href="{{ langFile.path }}"
+                    <a href="{{ url('download/' ~ langFile.id ~ '/' ~ langFile.file_name|url_encode) }}"
                        target="_blank"
                        rel="noopener noreferrer"
-                       class="btn btn-primary"
+                       class="btn btn-primary matomo-download"
                        aria-label="Download {{ langFile.title ?: langFile.file_name }} version of {{ record.name }} (opens in new window)">{{ langFile.title ?: langFile.file_name }}</a>
                     {% endfor %}
                 </div>

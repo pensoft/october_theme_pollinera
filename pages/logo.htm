@@ -88,37 +88,37 @@ return Response::download($pathToFile, $fileName, $headers);
                 <h2 class="text-center">Download {{record.name}}</h2>
                 <div class="links">
                     {% if record.file_jpg %}
-                    <a href="{{record.file_jpg.path}}"
+                    <a href="{{ url('download/' ~ record.file_jpg.id ~ '/' ~ record.file_jpg.file_name|url_encode) }}"
                        download="{{record.file_jpg.file_name}}"
-                       class="btn btn-primary btn-download"
+                       class="btn btn-primary btn-download matomo-download"
                        aria-label="Download {{record.name}} logo in JPG format">JPG</a>
                     {% endif %}
 
                     {% if record.file_png %}
-                    <a href="{{record.file_png.path}}"
+                    <a href="{{ url('download/' ~ record.file_png.id ~ '/' ~ record.file_png.file_name|url_encode) }}"
                        download="{{record.file_png.file_name}}"
-                       class="btn btn-primary btn-download"
+                       class="btn btn-primary btn-download matomo-download"
                        aria-label="Download {{record.name}} logo in PNG format">PNG</a>
                     {% endif %}
 
                     {% if record.file_eps %}
-                    <a href="{{record.file_eps.path}}"
+                    <a href="{{ url('download/' ~ record.file_eps.id ~ '/' ~ record.file_eps.file_name|url_encode) }}"
                        download="{{record.file_eps.file_name}}"
-                       class="btn btn-primary btn-download"
+                       class="btn btn-primary btn-download matomo-download"
                        aria-label="Download {{record.name}} logo in SVG vector format">SVG</a>
                     {% endif %}
 
                     {% if record.file_pdf %}
-                    <a href="{{record.file_pdf.path}}"
+                    <a href="{{ url('download/' ~ record.file_pdf.id ~ '/' ~ record.file_pdf.file_name|url_encode) }}"
                        download="{{record.file_pdf.file_name}}"
-                       class="btn btn-primary btn-download"
+                       class="btn btn-primary btn-download matomo-download"
                        aria-label="Download {{record.name}} logo in PDF format">PDF</a>
                     {% endif %}
 
                     {% if record.file_zip %}
-                    <a href="{{record.file_zip.path}}"
+                    <a href="{{ url('download/' ~ record.file_zip.id ~ '/' ~ record.file_zip.file_name|url_encode) }}"
                        download="{{record.file_zip.file_name}}"
-                       class="btn btn-primary btn-download"
+                       class="btn btn-primary btn-download matomo-download"
                        aria-label="Download {{record.name}} logo in ZIP format">ZIP</a>
                     {% endif %}
                 </div>
